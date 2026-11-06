@@ -65,19 +65,14 @@ Each guide has a Tag legend section with the definitions and links to the open `
 
 The guides were checked against the official GrapheneOS pages (install, usage, features, FAQ, releases, app repository) and, for the cryptophone guide, spot-checked against named external primary sources (EFF, Freedom of the Press Foundation, Reporters Without Borders, Tor Project, Signal, app project pages). Separate security, OPSEC, fact-check, language and consistency reviews were run over the files.
 
-Open `[Verify]` / `[Prüfen]` markers, counted by occurrence (this includes a few mentions in the tag legend): **daily-driver guide 12 per file, cryptophone guide 24 per file**. Each marker states its reason in the guide itself.
+Open `[Verify]` / `[Prüfen]` topics (counted by topic, not by tag occurrence): **3 in the daily-driver guide, 6 in the cryptophone guide**; each guide's Tag legend lists them with links (the counts are maintained by hand and need updating when a topic is resolved). Each marker states its reason in the guide itself.
 
 Still unconfirmed and marked `[Verify]` / `[Prüfen]` in the text:
 
 - The GrapheneOS project's stance on Tor VPN (its stance on Orbot appears only in a 2020 issue-tracker comment)
-- Lockdown is documented only by a secondary source (privacygear.nl), not by GrapheneOS; the exact menu paths for Bluetooth/Wi-Fi auto-off and the Private Space clipboard setting are unconfirmed
-- Carrier and SIM details: whether eSIM activation needs an account, ID or payment, and whether a SIM-less phone's IMEI is visible to the network
-- Signal: availability on Accrescent
-- The text of the current CBP border-search directive (a scanned PDF), non-US legal and border rules, and a few per-country details
-
-## Deprecated files
-
-`grapheneos-hardening-guide-en.md` and `grapheneos-hardening-guide-de.md` are deprecation notices for an older guide. The four guides linked above are authoritative.
+- Menu paths and labels that vary by release (the Bluetooth/Wi-Fi auto-off and Private Space clipboard paths are taken from the GrapheneOS Settings source, other paths are not audited)
+- Carrier and SIM details: whether eSIM activation needs an account, ID or payment, and how far a SIM-less phone's equipment identifier is exposed in an emergency call, which depends on the network
+- Non-US legal and border rules, and a few per-country details such as SIM registration rules
 
 ## Sources
 
@@ -89,6 +84,7 @@ Still unconfirmed and marked `[Verify]` / `[Prüfen]` in the text:
 - Obtainium: <https://github.com/ImranR98/Obtainium>
 - privacygear.nl GrapheneOS hardening guide (secondary source, not official GrapheneOS documentation): <https://privacygear.nl/en/guides/grapheneos-hardening-guide/>
 - Accrescent: <https://accrescent.app/>
+- Google Android Help, Lockdown (external reference, not GrapheneOS documentation): <https://support.google.com/android/answer/9075927?hl=en>
 - Cryptomator Android documentation: <https://docs.cryptomator.org/android/setup/>
 - CBP, Border Search of Electronic Devices (Directive No. 3340-049B): <https://www.cbp.gov/document/directives/cbp-directive-no-3340-049b-border-search-electronic-devices>
 - Signal: <https://signal.org/>, [Signal PIN and Registration Lock](https://support.signal.org/hc/en-us/articles/360007059792-Signal-PIN), [re-registering with the Signal PIN](https://support.signal.org/hc/en-us/articles/5440120029082-Re-registering-using-your-Signal-PIN), [APK download and verification](https://signal.org/android/apk/)
