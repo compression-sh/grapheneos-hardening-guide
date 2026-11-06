@@ -51,6 +51,8 @@ Cryptophone guide only: behavioral OPSEC, incident response, anti-patterns, and 
 
 A `[Verify]` tag is a deliberate flag, not decoration. Menu names and device lists change between GrapheneOS releases, so check the official pages before relying on a path or a model.
 
+Each guide has a Tag legend section with the definitions and links to the open `[Verify]` topics: [daily-driver (EN)](daily-driver-guide-en.md#tag-legend), [daily-driver (DE)](daily-driver-guide-de.md#tag-legend), [cryptophone (EN)](cryptophone-guide-en.md#tag-legend), [cryptophone (DE)](cryptophone-guide-de.md#tag-legend).
+
 ## Important warnings
 
 - **Installing GrapheneOS erases the phone.** Unlocking the bootloader wipes it, and locking it wipes it again. Back up first.
