@@ -372,7 +372,7 @@ Weniger Apps, weniger Berechtigungen, weniger Konten. Meide aufgeblähte, geschl
 | Messenger | **Signal** | Andere geprüfte E2EE-Messenger | Ende-zu-Ende-verschlüsselt. Die Signal-Registrierung erfordert eine Rufnummer. Benutzernamen können deine Rufnummer vor anderen Nutzern verbergen, heben aber weder die Rufnummernpflicht auf noch beseitigen sie alle Metadaten-Exposition. Signal ist nicht im GrapheneOS-App-Repository [**Offiziell**](#tag-official). Signal ist im am 6. November 2026 geprüften Repository-Katalog von Accrescent nicht gelistet (Zeitstempel des Katalogs: 25. Februar 2026; die Verfügbarkeit kann sich ändern; <https://repo.accrescent.app/repodata.1.json>). Nutze stattdessen die Website-APK von Signal, Google Play oder eine andere ausdrücklich geprüfte Quelle (siehe 7.5). Prüfe das Repository erneut, wenn sich die Verfügbarkeit ändert. |
 | 2FA/Authenticator | **Aegis** (Open Source) | Hardware-Sicherheitsschlüssel (FIDO2) | Tresor verschlüsselt sichern; Wiederherstellungscodes offline |
 | Passwortmanager | **KeePassDX** oder Bitwarden | KeePassXC am Computer | Lokale Datenbank vermeidet ein Cloud-Konto |
-| VPN-Client | Offizielle **Mullvad**- oder **WireGuard**-App | RethinkDNS (VPN + Filter) | Die GrapheneOS-FAQ empfiehlt die offizielle WireGuard-App und die offizielle Mullvad-App. Die VPN-Wahl hängt von Vertrauen, Rechtsordnung, Logging-Richtlinie, Zahlungsmethode und Bedrohungsmodell ab [**Offiziell**](#tag-official) |
+| VPN-Client | Offizielle **Mullvad**- oder **WireGuard**-App | RethinkDNS (VPN + Filter) | Die GrapheneOS-FAQ empfiehlt die offizielle WireGuard-App und die offizielle Mullvad-App. Die VPN-Wahl hängt von Vertrauen, Rechtsordnung, Logging-Richtlinie, Zahlungsmethode und Bedrohungsmodell ab [**Offiziell**](#tag-official). Wähle und bezahle das VPN so, dass es nicht mit deiner echten Identität verknüpft wird: Ein mit deiner persönlichen Karte bezahltes oder mit deiner Haupt-E-Mail-Adresse registriertes Konto kann das VPN an dich binden. [**Empfehlung**](#tag-advice) |
 | Karten/Navigation | **Organic Maps** oder OsmAnd | Web-Karten im Browser | Offline-Karten brauchen kein Netz |
 | E-Mail | **Proton Mail** o. ä. mit E2E-Möglichkeit | Selbst gehostet | E-Mail ist metadatenreich; Anonymität gibt es dadurch nicht. Laut Datenschutzerklärung von Proton speichert es standardmäßig keine dauerhaften IP-Protokolle, kann IP-Protokolle aber vorübergehend zur Missbrauchsbekämpfung führen und gibt nur begrenzte Daten heraus, wenn es gesetzlich verpflichtet ist; andere Anbieter weichen ab |
 | Cloud/Speicher | **Cryptomator** über einen Speicher deiner Wahl | Nur lokal | Vor dem Hochladen verschlüsseln |
@@ -447,6 +447,8 @@ Viele Apps laufen auch ohne. Nutze möglichst viel ohne Google Play und behandle
 
 Ein Telefon ist ein Bündel von Kennungen und ein Ortungssensor. Softwarehärtung ändert nicht, was Netz, Netzbetreiber oder genutzte Dienste sehen können.
 
+Wie du ein Werkzeug beschaffst und einrichtest, zählt so viel wie die Wahl: Ein mit deiner echten Karte bezahltes VPN oder ein mit deiner echten Rufnummer registriertes Konto kann eine neue Identität wieder mit dir verknüpfen. [**Empfehlung**](#tag-advice)
+
 | Faktor | Was er offenbart / verknüpft |
 |---|---|
 | **SIM/eSIM, IMSI, Rufnummer** | Identifizieren dich gegenüber dem Netzbetreiber. Betreiber protokollieren genutzte Funkzellen (Standort). Eine eSIM hat eine eigene Kennung (EID); die Anforderungen bei der Aktivierung hängen vom Netzbetreiber und vom Land ab <a id="verify-esim"></a>[**Prüfen**](#verify-esim) (keine allgemeingültige Primärquelle für Anforderungen an Konto, Ausweis oder Zahlung gefunden). Registrierungspflichten sind länderabhängig |
@@ -469,17 +471,20 @@ Ein Telefon ist ein Bündel von Kennungen und ein Ortungssensor. Softwarehärtun
 - **Wann ein VPN hilft:** in nicht vertrauenswürdigen Netzen, zum Verbergen vor lokalem Provider oder einer Seite, oder um aus einer stabilen IP-Region aufzutreten. **Wann nicht:** du meldest dich in Konten an, die auf dich laufen, oder die Bedrohung ist der Netzbetreiber oder der VPN-Anbieter selbst.
 - **Tor auf dem Handy:** Laut Projekt ist die Sicherheit des Tor Browsers im Vergleich zu Vanadium schwach, und Tor kann einen selbst zu einem interessanteren Ziel machen. [**Offiziell**](#tag-official) Wer starke Tor-Anonymität braucht, ist mit einer eigenen Umgebung, also einem separaten Gerät oder einem separaten Betriebssystem und nicht bloß einer separaten App, besser bedient als mit einem Alltagstelefon. App-Routing über Orbot oder Tor VPN ersetzt die Nutzungsregeln des Tor Browsers nicht, und das Tor Project sagt, die Tor-VPN-Beta solle nicht für sensible Aktivitäten genutzt werden. Ein GrapheneOS-Maintainer schrieb 2020 im Issue-Tracker des Projekts, Orbot sei schlecht umgesetzt und gepflegt und das Projekt werde es weder forken noch bündeln. [**Offiziell**](#tag-official) FAQ und Usage-Seiten nennen keine Tor-App.
 - Android erlaubt ein VPN pro Profil; stapele VPN-Apps nicht blind.
+- Nutze ein WLAN, dem dein privates Telefon nie beitritt, und benutze beide Geräte nicht zu denselben Zeiten und an denselben Orten. [**Empfehlung**](#tag-advice)
 
 ### Getrennte Identitäten statt nur Werkzeuge
 
 Für eine legitim getrennte Rolle (z. B. berufliche oder aktivistische Identität):
 
 1. Nutze ein **eigenes Profil** ohne Kontakte, Dateien, Konten oder Backups deiner persönlichen Identität.
-2. Verwende separate E-Mail-Adressen/Konten, die du in diesem Profil anlegst und nirgends sonst nutzt.
+2. Verwende separate E-Mail-Adressen/Konten, die du in diesem Profil anlegst und nirgends sonst nutzt. Lege neue Konten auf dem Gerät selbst an, mit einer neuen E-Mail-Adresse, die nicht an deine persönliche Wiederherstellungsadresse oder -nummer gebunden ist. Verlangt ein Dienst eine Rufnummer, kann diese Nummer die Konten miteinander und mit dir verknüpfen (siehe [„Eine separate Leitung einrichten“](cryptophone-guide-de.md#eine-separate-leitung-einrichten)). [**Empfehlung**](#tag-advice)
 3. Melde dich dort nie in persönlichen Konten an; verwende keine Benutzernamen, Avatare, Schreibstile oder Zeitpläne doppelt.
 4. Teile keine Dateien, Zwischenablage oder Benachrichtigungen zwischen den Profilen.
 5. Bedenke, dass dieselbe SIM, dasselbe Gerät, dasselbe Heim-WLAN, derselbe Standort und dieselben Zeiten die Profile untereinander und mit dir verknüpfen.
 6. Entferne Metadaten (EXIF, Dokumenteigenschaften) vor dem Teilen.
+
+Eine separate Nummer: Eine Prepaid-SIM, gekauft ohne Angaben oder Spuren über die Registrierungspflicht deines Landes hinaus, oder eine mit einer eigenen E-Mail-Adresse aktivierte eSIM vermeidet die Wiederverwendung deiner Hauptnummer. Dienste für virtuelle Nummern sind nicht anonym, und ihre Nummern können wiederverwendet werden. Details: [Cryptophone-Leitfaden, „Eine separate Leitung einrichten“](cryptophone-guide-de.md#eine-separate-leitung-einrichten). [**Empfehlung**](#tag-advice)
 
 **Bei einem Bedrohungsmodell mit hohem Risiko sind ein separates Gerät, eine separate SIM/eSIM und ein getrenntes Netzwerknutzungsmuster die realistische Grenze. Profiltrennung allein ist Kompartimentierung, keine vollständige Grenze.**
 
@@ -611,6 +616,8 @@ Das verringert unnötige Datenspuren und begrenzt Verknüpfungen. Es erzeugt kei
 - Mullvad VPN: <https://mullvad.net/>
 - Tor Project: <https://www.torproject.org/>
 - Signal, Rufnummern-Datenschutz und Benutzernamen: <https://signal.org/blog/phone-number-privacy-usernames/>
+- Signal-Nutzungsbedingungen: <https://signal.org/legal/>
+- Android-Entwicklerdokumentation (eSIM/EID): <https://source.android.com/docs/core/connect/esim-euicc-api>
 
 Aussagen mit [**Empfehlung**](#tag-advice) sind die Einschätzung dieses Leitfadens, keine offiziellen Positionen. Bei [**Prüfen**](#tag-verify): *Mit der aktuellen offiziellen Dokumentation abgleichen.*
 

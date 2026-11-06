@@ -372,7 +372,7 @@ Fewer apps, fewer permissions, fewer accounts. Avoid bloated, closed-source, tel
 | Messaging | **Signal** | Other audited E2EE messengers | End-to-end encrypted. Signal registration requires a phone number. Usernames can hide your phone number from other users, but they do not remove the phone-number requirement or eliminate all metadata exposure. Signal is not in the GrapheneOS app repository [**Official**](#tag-official). Signal is not listed in Accrescent's repository catalogue checked on 6 November 2026 (catalogue timestamp 25 February 2026; availability can change; <https://repo.accrescent.app/repodata.1.json>). Use Signal's website APK, Google Play or another explicitly verified source instead (see 7.5). Recheck the repository if availability changes. |
 | 2FA/authenticator | **Aegis** (open source) | Hardware security key (FIDO2) | Back up the vault encrypted; keep recovery codes offline |
 | Password manager | **KeePassDX** or Bitwarden | KeePassXC on computer | Local database avoids a cloud account |
-| VPN client | **Mullvad** or **WireGuard** official apps | RethinkDNS (VPN + filtering) | GrapheneOS's FAQ recommends the official WireGuard app and the official Mullvad app. VPN choice depends on trust, jurisdiction, logging policy, payment method and threat model [**Official**](#tag-official) |
+| VPN client | **Mullvad** or **WireGuard** official apps | RethinkDNS (VPN + filtering) | GrapheneOS's FAQ recommends the official WireGuard app and the official Mullvad app. VPN choice depends on trust, jurisdiction, logging policy, payment method and threat model [**Official**](#tag-official). Choose and pay for the VPN so it is not tied to your real identity: an account paid with your personal card or registered with your main email address can tie the VPN to you. [**Advice**](#tag-advice) |
 | Maps/navigation | **Organic Maps** or OsmAnd | Web maps in the browser | Offline maps need no network |
 | Email | **Proton Mail** or similar E2E-capable provider | Self-hosted | Email is metadata-rich; does not give anonymity. Proton's privacy policy says it keeps no permanent IP logs by default, may keep IP logs temporarily to combat abuse, and discloses limited data only if legally obligated; other providers differ |
 | Cloud/storage | **Cryptomator** over a storage you choose | Local-only | Encrypt before upload |
@@ -447,6 +447,8 @@ Most users can run many apps without it. Prefer to use as much as possible witho
 
 A phone is a bundle of identifiers and a location sensor. Software hardening does not change what the network, carrier or services you use can see.
 
+How you obtain and set up a tool matters as much as which one you pick: a VPN paid with your real card or an account registered with your real number can link a new identity back to you. [**Advice**](#tag-advice)
+
 | Factor | What it reveals / links |
 |---|---|
 | **SIM/eSIM, IMSI, phone number** | Identify you to the carrier. Carriers log which cell towers you use (location). An eSIM has its own identifier (EID); activation requirements depend on the carrier and country <a id="verify-esim"></a>[**Verify**](#verify-esim) (no universal primary source found for account, ID or payment requirements). Registration rules vary by country |
@@ -469,17 +471,20 @@ A phone is a bundle of identifiers and a location sensor. Software hardening doe
 - **When a VPN helps:** untrusted networks, hiding from the local ISP or a site, or appearing from a stable IP region. **When it doesn't:** you log into accounts tied to you, or the threat is the carrier or the VPN provider.
 - **Tor on mobile:** the project notes Tor Browser's security is weak compared to Vanadium and that Tor itself can make you more of a target. [**Official**](#tag-official) If you need strong Tor-based anonymity, a dedicated setup, meaning a separate device or a separate operating system and not merely a separate app, is more appropriate than a daily-use phone. App routing through Orbot or Tor VPN is not a substitute for Tor Browser's usage rules, and the Tor Project says the Tor VPN beta should not be used for sensitive activities. A GrapheneOS maintainer wrote in the project's issue tracker (2020) that Orbot is poorly implemented and maintained and that the project will not fork or bundle it. [**Official**](#tag-official) The FAQ and usage pages name no Tor app.
 - Android allows one VPN per profile; don't stack VPN apps blindly.
+- Use a Wi-Fi network your private phone never joins, and do not use both devices at the same times and places. [**Advice**](#tag-advice)
 
 ### Separate identities instead of just tools
 
 For a legitimately separate role (for example a professional or advocacy identity):
 
 1. Use a **separate profile** with no contacts, files, accounts or backups from your personal identity.
-2. Use separate email/accounts that you create in that profile and never use elsewhere.
+2. Use separate email/accounts that you create in that profile and never use elsewhere. Create new accounts on the device itself, with a new email address that is not tied to your personal recovery email or number. If a service demands a phone number, that number can link the accounts to each other and to you (see [Setting up a separate line](cryptophone-guide-en.md#setting-up-a-separate-line)). [**Advice**](#tag-advice)
 3. Never log into personal accounts there; never reuse usernames, avatars, writing style, or schedules.
 4. Don't cross-share files, clipboard or notifications between profiles.
 5. Be aware that the same SIM, device, home Wi-Fi, location and timing still link profiles to each other and to you.
 6. Strip metadata (EXIF, document properties) before sharing.
+
+A separate number: a prepaid SIM bought without adding records beyond your country's registration rules, or an eSIM activated with a separate email address, avoids reusing your main number. Virtual number services are not anonymous and their numbers can be recycled. Details: [cryptophone guide, "Setting up a separate line"](cryptophone-guide-en.md#setting-up-a-separate-line). [**Advice**](#tag-advice)
 
 **For a high-risk threat model, a separate device, separate SIM/eSIM, and separate network usage pattern are the realistic boundary. Profile separation alone is compartmentalization, not a complete boundary.**
 
@@ -611,6 +616,8 @@ This reduces unnecessary data exposure and limits correlation. It does not creat
 - Mullvad VPN: <https://mullvad.net/>
 - Tor Project: <https://www.torproject.org/>
 - Signal, phone-number privacy and usernames: <https://signal.org/blog/phone-number-privacy-usernames/>
+- Signal Terms of Service: <https://signal.org/legal/>
+- Android developer documentation (eSIM/EID): <https://source.android.com/docs/core/connect/esim-euicc-api>
 
 Statements marked [**Advice**](#tag-advice) are this guide's judgment, not official positions. Items marked [**Verify**](#tag-verify): *Verify against current official GrapheneOS documentation.*
 

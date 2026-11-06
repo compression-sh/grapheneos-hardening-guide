@@ -23,10 +23,10 @@ German version: [cryptophone-guide-de.md](cryptophone-guide-de.md)
 - [7. Apps](#7-apps)
 - [8. Communication OPSEC](#8-communication-opsec)
 - [9. Network OPSEC](#9-network-opsec)
-- [Behavioral OPSEC](#behavioral-opsec--verhaltens-opsec)
+- [Behavioral OPSEC / Verhaltens-OPSEC](#behavioral-opsec--verhaltens-opsec)
 - [10. Travel and physical security](#10-travel-and-physical-security)
 - [11. Incident response](#11-incident-response)
-- [12. Useful websites](#12-useful-websites--nützliche-webseiten)
+- [12. Useful websites / Nützliche Webseiten](#12-useful-websites--nützliche-webseiten)
 - [13. Checklists](#13-checklists)
 - [14. Anti-patterns](#14-anti-patterns)
 - [15. Essential vs optional, and verification status](#15-essential-vs-optional-and-verification-status)
@@ -112,9 +112,11 @@ Adversaries considered: opportunistic thieves, malware and malicious apps, netwo
 
 These are rules, not suggestions. Each rule has a reason; if you cannot follow one, understand what you are giving up.
 
+A tool does not protect you if you obtain or set it up wrong. A VPN paid with your real card, an eSIM activated with your ID, or an account registered with your real phone number can link the new identity back to you. The rules below cover not only which tools you use, but also how you obtain and set them up. [**Advice**](#tag-advice)
+
 1. **One purpose.** The device does sensitive communication and research, nothing else.
 2. **No app without a documented reason.** Keep a short list: app, source, purpose, permissions granted, date added. Remove apps you no longer need.
-3. **No reused identity material.** Do not reuse personal accounts, usernames, email addresses, phone numbers, profile pictures or recovery contacts.
+3. **No reused identity material.** Do not reuse personal accounts, usernames, email addresses, phone numbers, profile pictures or recovery contacts. Create new accounts on the device itself, with a new email address that is not tied to your personal recovery email or number. If a service demands a phone number, that number can link the accounts to each other and to you (see [Setting up a separate line](#setting-up-a-separate-line)). [**Advice**](#tag-advice)
 4. **No real-name contacts** unless operationally necessary, and then only the specific contact (Contact Scopes, section 4).
 5. **Separate SIM/eSIM.** Do not use the SIM or eSIM of your normal phone unless your threat model explicitly accepts correlation. Do not move a SIM between this device and another one: carriers can log IMSI/IMEI pairs, so a new SIM in the same phone, or an old SIM in a new phone, can link identities (see 9.1). Also avoid carrying or powering on this device together with your personal phone at the same times and places, buying the SIM and device together or with traceable payment, and topping up with a linked payment method. SIM registration and ID rules are country-specific. Set a SIM PIN. [**Advice**](#tag-advice) <a id="verify-sim-rules"></a>[**Verify**](#verify-sim-rules) the rules of your country.
 6. **No personal payment methods** for anything tied to this identity.
@@ -214,7 +216,7 @@ For every setting: the recommended cryptophone value, why, what it protects agai
 |---|---|---|---|---|---|
 | **Browser** | **Vanadium** in the isolated browsing profile. JavaScript JIT is off by default, with a per-site toggle; extension support is not planned (by design) [**Official**](#tag-official). Keep it that way. [**Advice**](#tag-advice) | Strongest sandbox among common mobile browsers per the project [**Official**](#tag-official); fewer plugins means less fingerprinting | Many browser exploits, extension-based tracking | IP-based tracking, logging into accounts, browser fingerprinting by site | Some sites break with JIT off |
 | **Private DNS** (Settings → Network & internet → Private DNS) | **Automatic** (default) when not using a VPN; **Avoid a configured hostname when a VPN is active; Off in any secondary profile with a VPN** [**Official**](#tag-official) | Automatic gives opportunistic DNS-over-TLS; a hostname forces authenticated DoT. Private DNS is global but VPN settings are per profile, so the two interact badly; the 2025-07 release fixed two VPN leaks [**Official**](#tag-official) | A passive local listener (Automatic mode); active attackers can force fallback [**Official**](#tag-official) | Domains leaking via TLS SNI, destination IPs, the DNS provider seeing your queries. Not an alternative to Tor or a VPN [**Official**](#tag-official) | None in Automatic mode |
-| **VPN** | Use only if you can name the threat it addresses (untrusted local network or ISP). Use the official Mullvad or WireGuard app, as the GrapheneOS FAQ recommends [**Official**](#tag-official). Enable **Always-on VPN** and **Block connections without VPN** | Hides destinations and content from the local network and ISP; hides your IP from sites | A hostile Wi-Fi operator or ISP | The VPN provider seeing your traffic (trust shifts), accounts you log into, cell-tower location, calls and SMS. EFF: "A VPN is not a tool for anonymity" [**External**](#tag-external) | Setup and per-profile configuration |
+| **VPN** | Use only if you can name the threat it addresses (untrusted local network or ISP). Use the official Mullvad or WireGuard app, as the GrapheneOS FAQ recommends [**Official**](#tag-official). Enable **Always-on VPN** and **Block connections without VPN**. Choose and pay for the VPN so it is not tied to your real identity: an account paid with your personal card or registered with your main email address can tie the VPN to you. [**Advice**](#tag-advice) | Hides destinations and content from the local network and ISP; hides your IP from sites | A hostile Wi-Fi operator or ISP | The VPN provider seeing your traffic (trust shifts), accounts you log into, cell-tower location, calls and SMS. EFF: "A VPN is not a tool for anonymity" [**External**](#tag-external) | Setup and per-profile configuration |
 | **Updates** | System Updater enabled, **Stable** channel, reboot to finish [**Official**](#tag-official) | Security fixes are among the most valuable protections | Known vulnerabilities | Unknown (zero-day) vulnerabilities | Occasional restarts |
 | **Backups** | **No full-device backup by default.** Keep only: an encrypted copy of the password-manager database, an encrypted authenticator export, and offline recovery codes, stored apart from the device | Backups are an extra copy an adversary can seize | Loss of device = loss of access | A compromised backup medium | Rebuilding after loss |
 | **Seedvault** (built-in backup) | Do not use for the sensitive profile unless you need it. If used, use a locally stored encrypted target. The project plans to replace Seedvault because its upstream was taken over by a group not sharing its goals [**Official**](#tag-official) | Avoids a cloud copy | Cloud exposure of device data | A seized backup drive | n/a |
@@ -424,7 +426,7 @@ Every store below installs apps into the normal app sandbox. The differences are
 
 ### 9.5 Never mix identities over the network
 
-Do not log into personal accounts on this device, do not open personal links, and do not use the same home Wi-Fi for the sensitive identity and for your personal one if correlation matters.
+Do not log into personal accounts on this device, do not open personal links, and do not use the same home Wi-Fi for the sensitive identity and for your personal one if correlation matters. Use a Wi-Fi network your private phone never joins, and do not use both devices at the same times and places. [**Advice**](#tag-advice)
 
 **Remaining risk:** the carrier, the Wi-Fi operator, the VPN provider and the destination server each see a slice. No tool in this section removes all of them at once.
 
@@ -445,6 +447,16 @@ The settings in section 4 protect the device. This section covers what you do wi
 | Removing or disabling the SIM | Remove the SIM or disable the eSIM when you do not need cellular and want to avoid the carrier link | Stops SIM-based registration on the network [**Advice**](#tag-advice) | Emergency calls can work without a SIM where national rules allow it [**External**](#tag-external); a permitted emergency call can expose an equipment identifier to the serving network, depending on the access technology [**External**](#tag-external) [**Verify**](#verify-imei); Wi-Fi and IP exposure remain |
 | Prepaid or "anonymous" SIM | Understand the limits before relying on one | Prepaid reduces contract and billing links only | Prepaid SIM registration and ID rules vary by country and carrier [**Verify**](#verify-sim-rules) (no reliable multi-country source found; the EFF source was not independently read); buying with a card, buying together with the phone, topping up with a traceable payment, and carrying it next to your personal phone all create trails [**Advice**](#tag-advice) |
 | Phone number | Never reuse your personal number for a sensitive identity | The number links accounts, including your messenger account | Signal registration requires a number; usernames only hide it from other users [**External**](#tag-external) |
+
+### Setting up a separate line
+
+Choosing a tool is not enough; how you obtain and activate it decides whether it separates identities. Device policy rules 3, 5 and 6 and the table above give the basics.
+
+- **Prepaid SIM:** buy it without adding records beyond what your country's registration rules require, and register and top up without your main number, personal email address or a payment method linked to you. [**Advice**](#tag-advice) [**Verify**](#verify-sim-rules)
+- **eSIM:** a downloadable carrier profile; its EID identifies the eUICC hardware [**External**](#tag-external) (Android documentation: <https://source.android.com/docs/core/connect/esim-euicc-api>). You usually get one through the carrier's app or website and activate it with a QR or activation code on the target device. Use a separate email address and, where possible, a separate payment method. What activation requires depends on the carrier and country. [**Advice**](#tag-advice) [**Verify**](#verify-esim)
+- **Data-only eSIM plans:** some providers sell them (per provider descriptions). No phone number is assigned, but calls, SMS and number-based app registration will not work. [**Advice**](#tag-advice) [**Verify**](#verify-esim)
+- **Virtual or second numbers (SMS-rental or VoIP services):** a different category, and not anonymous. Numbers may be shared or recycled, and a number reassigned to someone else can let them receive codes for accounts tied to it [**Verify**](#verify-sim-rules) (no primary source found for reassignment practices). A service may refuse such numbers. Signal's terms require that you have the rights to the number you register with [**External**](#tag-external) (<https://signal.org/legal/>). Treat an account tied to such a number as one you may lose. [**Advice**](#tag-advice)
+- **A number is a shared identifier either way:** the carrier knows the SIM, and a service you register with can receive the number. [**Advice**](#tag-advice)
 
 ### When to turn the phone off
 
@@ -567,7 +579,7 @@ For each scenario: immediate actions, what to assume is compromised, what to rot
 
 ---
 
-## 12. Useful websites
+## 12. Useful websites / Nützliche Webseiten
 
 Only official or reputable nonprofit sources. Trust levels are this guide's assessment.
 
@@ -593,6 +605,8 @@ Only official or reputable nonprofit sources. Trust levels are this guide's asse
 | GrapheneOS forum thread "wasted-sentry" | <https://discuss.grapheneos.org/d/28627-wasted-sentry> | Community discussion of Wasted and Sentry, including Android 15 reliability reports | Section 4.5 | User content, not official | A single user's observation; not independently tested here |
 | privacygear.nl GrapheneOS hardening guide | <https://privacygear.nl/en/guides/grapheneos-hardening-guide/> | Settings walkthrough with menu paths (NFC) | Cross-checking menu paths | Secondary source (reviewed 5 Nov 2026, GrapheneOS 2026110200); not official GrapheneOS documentation | Paths vary by release and Android version; it recommends Orbot for app-level Tor, which a GrapheneOS maintainer criticized in 2020 |
 | Google Android Help: Lockdown | <https://support.google.com/android/answer/9075927?hl=en> | Documents how Lockdown is invoked and what it disables | Section 4.1 | Official Google documentation for Android behavior; not GrapheneOS documentation | Menu labels vary by Android version and device |
+| Android developer documentation: eSIM (eUICC API) | <https://source.android.com/docs/core/connect/esim-euicc-api> | Describes the EID as identifying the eUICC hardware | Section "Setting up a separate line" | Official Android platform documentation; not GrapheneOS documentation | Describes the platform API, not carrier practice |
+| Signal Terms of Service | <https://signal.org/legal/> | Requires rights to the phone number used to register | Before using a second or virtual number | Signal's own terms | Says nothing specific about virtual numbers |
 
 Excluded on purpose: VPN affiliate lists, "anonymous phone" sellers, cracked-app sites, random Telegram channels, influencer blogs as primary sources, and any tool that requires trusting an unknown third party.
 
