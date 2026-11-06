@@ -200,13 +200,14 @@ Menu names below follow current official documentation; labels can differ by rel
 - Update the OS first on a network you trust. For a higher-risk setup you may prefer setting a strong passcode before connecting.
 - A SIM or eSIM links the phone to a carrier account and a location trail. See [section 9](#9-anonymity-realistic-opsec).
 - eSIM is not more anonymous than a physical SIM; it has its own identifier (EID, per Android documentation). **[Advice]** A Duress wipe also removes installed eSIM profiles **[Official]**; that does not cancel the contract with the carrier. **[Advice]**
+- LTE-only mode (Settings → Network & internet → SIMs → your SIM → Preferred network type) reduces remote exploitation of legacy radio code; the project says it is not a confidentiality feature. **[Official]** It only helps if your carrier works reliably in LTE-only. **[Advice]**
 - If you do not need cellular, you can use the phone Wi-Fi-only (no SIM inserted or used). This avoids the SIM-based link to a carrier, not Wi-Fi/IP exposure. Airplane mode is not proof of untrackability, and powering off is stronger (see [cryptophone-guide-en.md](cryptophone-guide-en.md), section 9.1). **[Advice]**
 
 ### 4.3 Screen lock
 
 Path: **Settings → Security & privacy → Device unlock**. **[Official]**
 
-- Use a **random PIN of at least 6 digits**, or better a **passphrase** (several random words / long alphanumeric). Avoid birthdays and reused codes. **[Advice]**
+- Use a **random PIN of at least 6 digits**, or better a **passphrase** (several random words / long alphanumeric). Avoid birthdays and reused codes. **[Advice]** GrapheneOS supports passwords of up to 128 characters, including diceware passphrases. **[Official]**
 - Enable **PIN scrambling** (randomizes the keypad layout; applies to the lock screen and SIM PIN). **[Official]** It reduces shoulder-surfing and smudge leaks at the cost of speed.
 - Biometrics are a convenience, not your main secret. GrapheneOS offers **two-factor fingerprint unlock** (fingerprint plus a PIN), allowing a strong passphrase as the primary method. **[Official]** It also permits only 5 total fingerprint attempts (stock Android allows 20 with delays), which also lets you disable fingerprint unlock by deliberately failing 5 times with a different finger. **[Official]** Disable biometrics if you expect to be compelled to unlock.
 - Use **Lockdown** to disable biometric unlock quickly: hold the power button, then tap Lockdown (if no menu appears, check Settings → System → Gestures → Press & hold power button). It temporarily disables biometrics, requires the PIN or password and hides lock-screen notifications (privacygear.nl, a secondary source; GrapheneOS's own pages do not describe it). **[Advice]** Do not count on it returning the phone to the at-rest (BFU) state; power off or reboot for that. **[Advice]**
@@ -244,7 +245,7 @@ Path: **Settings → Security & privacy → Device unlock**. **[Official]**
 
 ### Browser
 
-Use **Vanadium**, the built-in hardened Chromium, which also provides the system WebView. **[Official]** Chromium-based browsers have the strongest sandbox and site isolation of the browser families, according to the project. **[Official]** Don't expect Vanadium alone to prevent fingerprinting or IP tracking: hiding the IP address requires an intermediary such as a VPN or Tor. **[Advice]** Extra browsers add attack surface; install them only for a reason.
+Use **Vanadium**, the built-in hardened Chromium, which also provides the system WebView. **[Official]** Chromium-based browsers have the strongest sandbox and site isolation of the browser families, according to the project. **[Official]** Don't expect Vanadium alone to prevent fingerprinting or IP tracking: hiding the IP address requires an intermediary such as a VPN or Tor. **[Advice]** JavaScript JIT is off by default in Vanadium, with a per-site toggle, and extension support is not planned. **[Official]** Extra browsers add attack surface; install them only for a reason.
 
 ### DNS and what it actually changes
 
@@ -279,10 +280,10 @@ Suggested layout **[Advice]**:
 
 Apps are sandboxed from each other by default. Most hardening here is about **choosing fewer apps**, putting risky ones in a separate profile, and using the scoping permissions below.
 
-### 6.3 Storage Scopes and Contacts Scopes **[Official]**
+### 6.3 Storage Scopes and Contact Scopes **[Official]**
 
 - **Storage Scopes**: an app that wants broad file access sees only the files/folders you pick, instead of all storage.
-- **Contacts Scopes**: an app sees only the contacts you choose.
+- **Contact Scopes**: an app sees only the contacts you choose.
 
 Use them whenever an app requests storage/contacts access.
 
@@ -347,7 +348,7 @@ Fewer apps, fewer permissions, fewer accounts. Avoid bloated, closed-source, tel
 | Category | Suggested option | Alternative | Notes |
 |---|---|---|---|
 | Browser | **Vanadium** (built-in) | Tor Browser for specific use | Weaker security than Vanadium; see section 9. Don't add many browsers |
-| Messaging | **Signal** | Other audited E2EE messengers | End-to-end encrypted. Signal registration requires a phone number. Usernames can hide your phone number from other users, but they do not remove the phone-number requirement or eliminate all metadata exposure. |
+| Messaging | **Signal** | Other audited E2EE messengers | End-to-end encrypted. Signal registration requires a phone number. Usernames can hide your phone number from other users, but they do not remove the phone-number requirement or eliminate all metadata exposure. Signal is not in the GrapheneOS app repository **[Official]**; whether Accrescent offers it is **[Verify]** (Accrescent publishes no app list); the direct APK route is described in 7.5. |
 | 2FA/authenticator | **Aegis** (open source) | Hardware security key (FIDO2) | Back up the vault encrypted; keep recovery codes offline |
 | Password manager | **KeePassDX** or Bitwarden | KeePassXC on computer | Local database avoids a cloud account |
 | VPN client | **Mullvad** or **WireGuard** official apps | RethinkDNS (VPN + filtering) | GrapheneOS's FAQ recommends the official WireGuard app and the official Mullvad app. VPN choice depends on trust, jurisdiction, logging policy, payment method and threat model **[Official]** |
@@ -370,7 +371,7 @@ Every store below installs apps into the normal app sandbox. The differences are
 | **Accrescent** | No account required | None stated by the project | Automatic, unattended, unprivileged updates on Android 12 and later | Small curated catalogue; the project is in alpha | App signing key pinning for first-time installs, signed repository metadata, and no remote APK signing, so developers keep control of their signing keys | Daily driver: use it for the apps it carries. Cryptophone: the same. Install the client from the GrapheneOS App Store, as Accrescent's own site recommends for GrapheneOS users. In the source order of 7.1 it ranks below verified developer releases only because of its alpha status **[Advice]** |
 | **F-Droid** | No account needed; F-Droid says it does not track what you install | No Google dependency stated; an independent repository of free and open-source apps | Through the F-Droid client; speed depends on the app, because F-Droid builds on its own timeline and some apps are outdated or lag behind the developer **[Advice]** | Large catalogue of free and open-source apps; quality and update speed vary by app and repository **[Advice]** | Apps are checked for security problems before they are added. For apps with reproducible builds F-Droid publishes the developer's signature after verifying the build; other apps are signed with F-Droid's own keys | Daily driver: fallback for apps the stores above do not carry; check that the app is maintained. Cryptophone: fallback only (rule in 7.1) **[Advice]** |
 | **Aurora Store** | Yes, a Google account is needed. By default it fetches shared account credentials from Aurora Store's service (shared dummy accounts handed out through token dispensers); you can also sign in with your personal Google account **[Official]** | Full: it is an alternative frontend to the Google Play Store **[Official]** | Updates the Play apps it installed. GrapheneOS accepts updates of Google Play services, the Google Services Framework and the Play Store only from its own App Store or the Play Store itself, so do not use Aurora for those **[Official]** | The whole Play catalogue, mostly closed source **[Advice]** | Developer-signed Play apps, but installs run through Google under a shared or a personal account. Shared dummy accounts are not anonymity: you rely on the dispenser service, the account is shared with many other users, and Google can still correlate device information and installs; a personal account ties installs to you **[Advice]** | Daily driver: last resort, only in a separate profile and never with your main Google account. Cryptophone: do not use **[Advice]** |
-| **Obtainium** | No store account; it reads the developers' own release pages (for example GitHub, GitLab or F-Droid) | None, unless the app itself needs Google | Checks the release pages you configured, notifies you of new releases and installs them; it is not a store with its own review | Whatever apps publish APKs on supported release pages; you choose and configure each source yourself | Only as strong as your trust in each source and your verification: it does not make an unsigned or compromised release safe. Obtainium itself publishes a signing-certificate fingerprint and a PGP key for verification; its source is on GitHub (<https://github.com/ImranR98/Obtainium>) | Daily driver: optional helper for apps that are only distributed as APKs and that the stores above do not carry. Cryptophone: not by default; it adds an app with the "Install unknown apps" permission and network access, so use it only for a documented need and verify each source **[Advice]** |
+| **Obtainium** | No store account; it reads the developers' own release pages (for example GitHub, GitLab or F-Droid) | None, unless the app itself needs Google | Checks the release pages you configured, notifies you of new releases and installs them; it is not a store with its own review | Whatever apps publish APKs on supported release pages; you choose and configure each source yourself | Only as strong as your trust in each source and your verification: it does not make an unsigned or compromised release safe. Obtainium itself publishes a signing-certificate fingerprint and a PGP key for verification (Obtainium README, section "Installation"); its source is on GitHub (<https://github.com/ImranR98/Obtainium>) | Daily driver: optional helper for apps that are only distributed as APKs and that the stores above do not carry. Cryptophone: not by default; it adds an app with the "Install unknown apps" permission and network access, so use it only for a documented need and verify each source **[Advice]** |
 | **Manual APK download** | No store account; the developer's site decides | None, unless the app itself needs Google | No automatic updates: every update needs a manual re-download and signature verification (for Signal, signal.org/android/apk gives the SHA-256 fingerprint and an apksigner check) | Whatever the developer publishes; not every app offers an APK | Depends entirely on your verification: compare the signing-certificate fingerprint or checksum through a channel separate from the download, grant "Install unknown apps" to one app only and revoke it afterwards **[Advice]** | Daily driver: only when an app is available nowhere else. Cryptophone: only for apps unavailable elsewhere (for example Signal); verify the signature and update by hand **[Advice]** |
 
 **Remaining risk:** the store you choose changes who learns which apps you install and how quickly fixes reach you. It does not make an app trustworthy, and no login mode of any Google-based store makes you anonymous.
@@ -427,7 +428,7 @@ A phone is a bundle of identifiers and a location sensor. Software hardening doe
 
 | Factor | What it reveals / links |
 |---|---|
-| **SIM/eSIM, IMSI, phone number** | Identify you to the carrier. Carriers log which cell towers you use (location). An eSIM has its own identifier (EID) and often requires an account, ID or payment at activation. Registration rules vary by country |
+| **SIM/eSIM, IMSI, phone number** | Identify you to the carrier. Carriers log which cell towers you use (location). An eSIM has its own identifier (EID) and often requires an account, ID or payment at activation **[Verify]** (no primary source found for the account, ID or payment part). Registration rules vary by country |
 | **IMEI** | Device hardware identifier seen by the network; changing SIMs does not change it. Carriers can log IMSI/IMEI pairs, so a new SIM in the same phone, or an old SIM in a new phone, can link identities; EFF: the network observes SIM and device together |
 | **Mobile-network metadata** | Call/SMS/data records, tower connections, timing. A VPN does not hide that your phone connects to the network. Calls, SMS and VoLTE are carrier services and are not covered by a VPN |
 | **IP address** | Seen by every server you contact; hidden only by VPN/Tor (shifting trust) |
@@ -495,7 +496,7 @@ This reduces unnecessary data exposure and limits correlation. It does not creat
 
 ### After installing a new app
 - [ ] Source verified (App Store / developer signature)
-- [ ] Deny all unneeded permissions; use Storage/Contacts Scopes
+- [ ] Deny all unneeded permissions; use Storage/Contact Scopes
 - [ ] Block Network if it works offline
 - [ ] Sensors permission denied if not needed
 - [ ] Put in an appropriate profile
