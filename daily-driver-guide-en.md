@@ -1,8 +1,8 @@
 # GrapheneOS Guide (English)
 
-> **Status:** written 2026-11-05 and checked against the official GrapheneOS pages (features, usage, FAQ, web/CLI installer, releases). Menu names and device lists change between releases. Where something may differ on your device or version, the text says so. For anything marked **[Verify]**: *Verify against current official GrapheneOS documentation.*
+> **Status:** written 2026-11-05 and checked against the official GrapheneOS pages (features, usage, FAQ, web/CLI installer, releases). Menu names and device lists change between releases. Where something may differ on your device or version, the text says so. For anything marked [**Verify**](#tag-verify): *Verify against current official GrapheneOS documentation.*
 >
-> **Legend:** **[Official]** = stated in official GrapheneOS documentation. **[Advice]** = this guide's recommendation or general security practice, not an official GrapheneOS statement.
+> **Legend:** [**Official**](#tag-official) = stated in official GrapheneOS documentation. [**Advice**](#tag-advice) = this guide's recommendation or general security practice, not an official GrapheneOS statement.
 
 German version: [daily-driver-guide-de.md](daily-driver-guide-de.md) · For a stricter single-purpose setup see [cryptophone-guide-en.md](cryptophone-guide-en.md)
 
@@ -24,13 +24,37 @@ German version: [daily-driver-guide-de.md](daily-driver-guide-de.md) · For a st
 14. [Corrections to the previous guide](#14-corrections-to-the-previous-guide)
 15. [Changelog](#15-changelog)
 
+[Tag legend](#tag-legend)
+
+---
+
+<a id="tag-legend"></a>
+## Tag legend
+
+Every tag in this guide links to its entry below.
+
+| Tag | Meaning |
+|---|---|
+| <a id="tag-official"></a>**[Official]** | Stated in official GrapheneOS documentation (features, usage, FAQ, installer, release notes or project source). Variants such as "Official, release notes" name the page concerned; combined tags such as "Official/Advice" link to the first type. |
+| <a id="tag-advice"></a>**[Advice]** | This guide's recommendation or general security practice; not a hard fact and not an official GrapheneOS statement. |
+| <a id="tag-verify"></a>**[Verify]** | Could not be confirmed. The reason is stated next to the tag. Each tag jumps to the first place where the reason for its topic is given. |
+
+**Open verification topics** (each links to the place where the reason is given):
+
+- [Menu paths and labels](#verify-menu-paths)
+- [Bluetooth/Wi-Fi auto-off menu path](#verify-menu-bt-wifi)
+- [Private Space clipboard menu path](#verify-menu-clipboard)
+- [Legal, border and compelled-unlock rules by country](#verify-legal)
+- [Signal on Accrescent](#verify-signal-accrescent)
+- [Whether eSIM activation needs an account, ID or payment](#verify-esim)
+
 ---
 
 ## 1. Introduction
 
 ### What GrapheneOS is and is not
 
-GrapheneOS is a hardened, open-source Android-based operating system for supported Pixel devices. It starts from the Android Open Source Project (AOSP) and adds exploit mitigations (for example hardened memory allocator, hardware memory tagging on Pixel 8 and newer), a stricter permission model, and privacy features. **[Official]**
+GrapheneOS is a hardened, open-source Android-based operating system for supported Pixel devices. It starts from the Android Open Source Project (AOSP) and adds exploit mitigations (for example hardened memory allocator, hardware memory tagging on Pixel 8 and newer), a stricter permission model, and privacy features. [**Official**](#tag-official)
 
 It is **not**:
 
@@ -72,7 +96,7 @@ This guide covers lawful privacy and personal security. It does not help evade l
 
 ## 2. Supported devices and preparation
 
-### Supported devices **[Official]**
+### Supported devices [**Official**](#tag-official)
 
 At the time of writing, the FAQ lists official production support for: Pixel 6, 6 Pro, 6a, 7, 7 Pro, 7a, Fold, Tablet, 8, 8 Pro, 8a, 9, 9 Pro, 9 Pro XL, 9 Pro Fold, 9a, 10, 10 Pro, 10 Pro XL, 10 Pro Fold and 10a.
 
@@ -80,7 +104,7 @@ The project **strongly recommends** buying an 8th-generation or newer Pixel (8, 
 
 Carrier-locked variants (mainly some US carrier models) may not allow bootloader unlocking. Buy an unlocked device or confirm it can be unlocked.
 
-### Why official support and verified boot matter **[Official]**
+### Why official support and verified boot matter [**Official**](#tag-official)
 
 - Official devices receive full firmware, kernel and vendor security updates. An out-of-support device cannot be secured by the OS alone.
 - Verified boot checks the operating system at every start and detects tampering. It only works fully when the bootloader is **locked** after installation, and GrapheneOS installs its own signing key so that this protection applies to GrapheneOS, not stock Android.
@@ -90,7 +114,7 @@ Carrier-locked variants (mainly some US carrier models) may not allow bootloader
 
 - a supported Pixel (see above) and its USB-C cable, or a high-quality standards-compliant USB-C cable;
 - a computer with at least 2 GB free memory and 32 GB free storage, running a supported OS on bare metal (a virtual machine is not recommended). The web installer can also run from an Android phone or tablet;
-- a supported browser: Chromium (not Ubuntu's Snap package), Vanadium, Google Chrome, Microsoft Edge, or Brave with Brave Shields disabled **[Official]**;
+- a supported browser: Chromium (not Ubuntu's Snap package), Vanadium, Google Chrome, Microsoft Edge, or Brave with Brave Shields disabled [**Official**](#tag-official);
 - internet access (the installer downloads the release);
 - a **backup** of everything you want to keep.
 
@@ -98,7 +122,7 @@ Carrier-locked variants (mainly some US carrier models) may not allow bootloader
 
 ### Buying and setup considerations
 
-- The official recommendation is to buy a supported Pixel and install GrapheneOS yourself. The project is not affiliated with and does not endorse companies selling preinstalled devices. **[Official]**
+- The official recommendation is to buy a supported Pixel and install GrapheneOS yourself. The project is not affiliated with and does not endorse companies selling preinstalled devices. [**Official**](#tag-official)
 - If you buy a preinstalled device anyway, verify the verified-boot key hash after receiving it (see [3.6](#36-verify-the-installation)) and check the support lifetime.
 - Buying from a shop, with cash or without an account, can reduce *some* purchase records. It does **not** make the device anonymous: the device identifiers, your SIM, and later behavior still link to you. Retailers may also retain records such as CCTV footage, inventory/IMEI data or payment metadata that can link even a cash purchase to a person. Do not rely on purchase tricks.
 
@@ -106,7 +130,7 @@ Carrier-locked variants (mainly some US carrier models) may not allow bootloader
 
 ## 3. Installation
 
-> ⚠️ Use **only** the official installers at <https://grapheneos.org/install/>. Never use unofficial images, "GrapheneOS installer" downloads, mirrors you cannot verify, or third-party guides that tell you to skip steps. The project states that third-party guides are often outdated and contain misguided advice. **[Official]**
+> ⚠️ Use **only** the official installers at <https://grapheneos.org/install/>. Never use unofficial images, "GrapheneOS installer" downloads, mirrors you cannot verify, or third-party guides that tell you to skip steps. The project states that third-party guides are often outdated and contain misguided advice. [**Official**](#tag-official)
 
 ### 3.1 Method A: web installer (recommended for most users)
 
@@ -115,25 +139,25 @@ Page: <https://grapheneos.org/install/web>
 **Preparation**
 
 1. Boot the stock Android and complete setup, connect to the internet.
-2. Update the stock Android. On the **Pixel 6a**, OEM unlocking does not work with the factory stock Android: update to the June 2022 release or newer via OTA, **then factory reset** the device. **[Official]**
+2. Update the stock Android. On the **Pixel 6a**, OEM unlocking does not work with the factory stock Android: update to the June 2022 release or newer via OTA, **then factory reset** the device. [**Official**](#tag-official)
 3. Enable developer options: **Settings → About phone** and tap **Build number** repeatedly.
 4. Open **Settings → System → Developer options** and enable **OEM unlocking**. On carrier-sold variants this needs internet access so the stock Android can check whether the device was sold locked.
 
 **Unlock** (wipes the device)
 
-5. On the computer, open the install page in a supported browser. On traditional Linux distributions you need udev rules for non-root USB access (Arch: `android-udev`; Debian/Ubuntu: `android-sdk-platform-tools-common`). Use a direct port and a good cable, not a hub, and connect the phone. **[Official]**
+5. On the computer, open the install page in a supported browser. On traditional Linux distributions you need udev rules for non-root USB access (Arch: `android-udev`; Debian/Ubuntu: `android-sdk-platform-tools-common`). Use a direct port and a good cable, not a hub, and connect the phone. [**Official**](#tag-official)
 6. Boot the phone into the bootloader (hold the volume-down button while the phone boots, as in the CLI guide; the web page also explains it), then click **Unlock bootloader** on the page.
 7. Confirm on the phone with the volume buttons and power button.
 
 **Flash**
 
-8. Use the page's release download and **Flash release** controls. The installer flashes firmware, reboots into the bootloader interface and flashes the OS by itself. Do not unplug the cable or interact with the phone until it finishes. **[Official]**
+8. Use the page's release download and **Flash release** controls. The installer flashes firmware, reboots into the bootloader interface and flashes the OS by itself. Do not unplug the cable or interact with the phone until it finishes. [**Official**](#tag-official)
 
 **Lock**
 
-9. **Lock the bootloader only after the official installer/flasher reports successful flashing.** Then use **Lock bootloader** on the page and confirm on the phone with the volume and power buttons. If flashing failed, was interrupted or is incomplete, do not lock: leave the bootloader unlocked and re-flash. Locking with a missing, incomplete or invalid OS can leave the device unrecoverable, because OEM unlocking can only be re-enabled from a booting OS. **Locking wipes all data again**, which is why it must happen before you put any data on the device. **[Official for the lock step and wipe; the failure warning is Advice]**
+9. **Lock the bootloader only after the official installer/flasher reports successful flashing.** Then use **Lock bootloader** on the page and confirm on the phone with the volume and power buttons. If flashing failed, was interrupted or is incomplete, do not lock: leave the bootloader unlocked and re-flash. Locking with a missing, incomplete or invalid OS can leave the device unrecoverable, because OEM unlocking can only be re-enabled from a booting OS. **Locking wipes all data again**, which is why it must happen before you put any data on the device. [**Official for the lock step and wipe; the failure warning is Advice**](#tag-official)
 
-> ⚠️ **Do not skip locking.** The installation is not complete until the bootloader has been locked after a successful, verified flash. Locking enables full verified boot and blocks fastboot flashing, formatting and erasing of partitions. **[Official]**
+> ⚠️ **Do not skip locking.** The installation is not complete until the bootloader has been locked after a successful, verified flash. Locking enables full verified boot and blocks fastboot flashing, formatting and erasing of partitions. [**Official**](#tag-official)
 
 10. Reboot into GrapheneOS and complete setup (see [section 4](#4-first-boot-setup)).
 
@@ -141,7 +165,7 @@ Page: <https://grapheneos.org/install/web>
 
 Page: <https://grapheneos.org/install/cli>
 
-This method lets you install without trusting the project's web infrastructure: you download the factory image, **verify its signature with OpenSSH**, and flash with `fastboot`. It needs a supported OS with a current `fastboot` and OpenSSH, and enough understanding not to follow instructions blindly. The project's advice is to follow the guide **to the letter, without skipping, reordering or adding steps**. **[Official]**
+This method lets you install without trusting the project's web infrastructure: you download the factory image, **verify its signature with OpenSSH**, and flash with `fastboot`. It needs a supported OS with a current `fastboot` and OpenSSH, and enough understanding not to follow instructions blindly. The project's advice is to follow the guide **to the letter, without skipping, reordering or adding steps**. [**Official**](#tag-official)
 
 Outline (the live page has the exact commands, versions and checksums; those change):
 
@@ -149,7 +173,7 @@ Outline (the live page has the exact commands, versions and checksums; those cha
 2. **Enable OEM unlocking** in the stock Android (same as 3.1, steps 1-4, including the Pixel 6a note).
 3. **Boot into the bootloader interface:** hold the volume-down button while the device boots until it shows the red warning triangle and "Fastboot Mode". Do not press the power button to select "Start". Connect the device.
 4. **Unlock:** `fastboot flashing unlock`, then confirm on the device with the volume and power buttons. This wipes all data.
-5. **Obtain and verify the factory images:** download `allowed_signers`, the `DEVICE_NAME-install-VERSION.zip` and its `.zip.sig`, then verify the signature with `ssh-keygen -Y verify` exactly as the page shows. Compare the signing key with the other locations the page lists. Never flash an image that fails verification. **If verification fails, or flashing fails or is incomplete, do not lock the bootloader.** Leave it unlocked and re-flash; the device may not boot until a verified GrapheneOS image has been flashed successfully and the bootloader has then been locked. Locking with a missing, incomplete or invalid OS can leave the device unrecoverable, because OEM unlocking can only be re-enabled from a booting OS. **[Advice]** Re-download the image, re-verify it and retry the installation, or ask in the official GrapheneOS support channels (linked on the install page).
+5. **Obtain and verify the factory images:** download `allowed_signers`, the `DEVICE_NAME-install-VERSION.zip` and its `.zip.sig`, then verify the signature with `ssh-keygen -Y verify` exactly as the page shows. Compare the signing key with the other locations the page lists. Never flash an image that fails verification. **If verification fails, or flashing fails or is incomplete, do not lock the bootloader.** Leave it unlocked and re-flash; the device may not boot until a verified GrapheneOS image has been flashed successfully and the bootloader has then been locked. Locking with a missing, incomplete or invalid OS can leave the device unrecoverable, because OEM unlocking can only be re-enabled from a booting OS. [**Advice**](#tag-advice) Re-download the image, re-verify it and retry the installation, or ask in the official GrapheneOS support channels (linked on the install page).
 6. **Flash:** extract the zip (`bsdtar xvf` on Linux, `tar xvf` on macOS/Windows), enter the directory and run `bash flash-all.sh` (Linux/macOS) or `./flash-all.bat` (Windows). The script flashes firmware, reboots to the bootloader and flashes the OS. Do not interact with the device until it finishes.
 7. **Lock:** only after successful flashing and verification (the flash script finished without errors and the image signature was verified), run `fastboot flashing lock` and confirm on the device. Never lock after a failed, incomplete or unverified flash; it can leave the device unrecoverable (see step 5). **Locking wipes all data again**; do it before using the device.
 8. Boot GrapheneOS, finish setup, and keep the OEM-unlocking toggle on the last setup screen checked.
@@ -158,13 +182,13 @@ Outline (the live page has the exact commands, versions and checksums; those cha
 
 ### 3.3 Disabling OEM unlocking
 
-During first setup on the final screen a toggle for OEM unlocking is **checked by default**; this disables OEM unlocking, which is recommended. You can change it later in **Settings → System → Developer options**. **[Official]**
+During first setup on the final screen a toggle for OEM unlocking is **checked by default**; this disables OEM unlocking, which is recommended. You can change it later in **Settings → System → Developer options**. [**Official**](#tag-official)
 
 Leaving OEM unlocking disabled means the bootloader cannot be unlocked without access to the OS, which removes a way for an attacker to flash a modified system.
 
 ### 3.4 Turn off USB and wireless debugging
 
-After installation, turn off USB debugging and wireless debugging unless you actively need them. **[Advice]**
+After installation, turn off USB debugging and wireless debugging unless you actively need them. [**Advice**](#tag-advice)
 
 ### 3.5 Common mistakes and troubleshooting
 
@@ -173,55 +197,55 @@ After installation, turn off USB debugging and wireless debugging unless you act
 | Phone not detected | Bad cable/hub, VM, missing drivers on Windows | Use the original cable, a direct rear port, bare-metal OS; follow the install page's OS notes |
 | "OEM unlocking" greyed out | No internet on carrier SKU; Pixel 6a not updated to June 2022+ or not factory reset afterward | Connect to the internet; update the stock Android; on the Pixel 6a factory reset after the OTA update |
 | Flash fails midway | Cable/hub/browser issue | **Do not lock the bootloader.** Retry with another cable/port and restart the process from the bootloader; lock only after a complete, successful flash. Locking over a failed, incomplete or unverified flash can leave the device unrecoverable, because OEM unlocking can only be re-enabled from a booting OS |
-| Setup shows "bootloader not locked" warning | Locking step skipped | Only if the original flash completed successfully: use "Reboot to bootloader" from the welcome screen and lock it via the install page. Do this before putting data on the phone **[Official FAQ]** |
+| Setup shows "bootloader not locked" warning | Locking step skipped | Only if the original flash completed successfully: use "Reboot to bootloader" from the welcome screen and lock it via the install page. Do this before putting data on the phone [**Official FAQ**](#tag-official) |
 | Yellow boot screen | Expected: shows the GrapheneOS key hash | See 3.6 |
 | Stuck or in doubt | | Ask in the official chat (linked on the install page) |
 
 ### 3.6 Verify the installation
 
-1. On boot you should see a **yellow** notice that an alternate OS is loaded, with an ID derived from the SHA-256 of the verified-boot public key. The full hash is shown, and you can compare it against the list on the install page. **[Official]** This check is useful, but verified boot works without you doing it manually.
+1. On boot you should see a **yellow** notice that an alternate OS is loaded, with an ID derived from the SHA-256 of the verified-boot public key. The full hash is shown, and you can compare it against the list on the install page. [**Official**](#tag-official) This check is useful, but verified boot works without you doing it manually.
 2. During setup there must be no warning about an unlocked bootloader. If you see one, the installation is incomplete (see the troubleshooting table).
-3. For stronger assurance use the **Auditor** app with a second Android device (hardware-based attestation). **[Official]** Pair it right after installation, before the device leaves your control; attestation after a loss is only meaningful if the pairing happened beforehand. **[Advice]** It verifies the hardware, firmware and OS; it does not verify every installed app.
+3. For stronger assurance use the **Auditor** app with a second Android device (hardware-based attestation). [**Official**](#tag-official) Pair it right after installation, before the device leaves your control; attestation after a loss is only meaningful if the pairing happened beforehand. [**Advice**](#tag-advice) It verifies the hardware, firmware and OS; it does not verify every installed app.
 
 ---
 
 ## 4. First-boot setup
 
-Menu names below follow current official documentation; labels can differ by release. **[Verify]**
+Menu names below follow current official documentation; labels can differ by release. <a id="verify-menu-paths"></a>[**Verify**](#verify-menu-paths)
 
 ### 4.1 Initial setup choices
 
 - Choose a language, and leave the "disable OEM unlocking" toggle on the final screen checked (default).
-- Skip or decline any account sign-in. GrapheneOS does not need a Google account. **[Official]**
-- Do not enable usage reporting you don't need. GrapheneOS contacts its own servers for updates, connectivity checks, time and similar; see the FAQ "default connections" entry for the full list. **[Official]**
+- Skip or decline any account sign-in. GrapheneOS does not need a Google account. [**Official**](#tag-official)
+- Do not enable usage reporting you don't need. GrapheneOS contacts its own servers for updates, connectivity checks, time and similar; see the FAQ "default connections" entry for the full list. [**Official**](#tag-official)
 
 ### 4.2 Wi-Fi, mobile data, SIM and eSIM
 
 - Update the OS first on a network you trust. For a higher-risk setup you may prefer setting a strong passcode before connecting.
 - A SIM or eSIM links the phone to a carrier account and a location trail. See [section 9](#9-anonymity-realistic-opsec).
-- eSIM is not more anonymous than a physical SIM; it has its own identifier (EID, per Android documentation). **[Advice]** A Duress wipe also removes installed eSIM profiles **[Official]**; that does not cancel the contract with the carrier. **[Advice]**
-- LTE-only mode (Settings → Network & internet → SIMs → your SIM → Preferred network type) reduces remote exploitation of legacy radio code; the project says it is not a confidentiality feature. **[Official]** It only helps if your carrier works reliably in LTE-only. **[Advice]**
-- If you do not need cellular, you can use the phone Wi-Fi-only (no SIM inserted or used). This avoids the SIM-based link to a carrier, not Wi-Fi/IP exposure. Airplane mode is not proof of untrackability, and powering off is stronger (see [cryptophone-guide-en.md](cryptophone-guide-en.md), section 9.1). **[Advice]**
+- eSIM is not more anonymous than a physical SIM; it has its own identifier (EID, per Android documentation). [**Advice**](#tag-advice) A Duress wipe also removes installed eSIM profiles [**Official**](#tag-official); that does not cancel the contract with the carrier. [**Advice**](#tag-advice)
+- LTE-only mode (Settings → Network & internet → SIMs → your SIM → Preferred network type) reduces remote exploitation of legacy radio code; the project says it is not a confidentiality feature. [**Official**](#tag-official) It only helps if your carrier works reliably in LTE-only. [**Advice**](#tag-advice)
+- If you do not need cellular, you can use the phone Wi-Fi-only (no SIM inserted or used). This avoids the SIM-based link to a carrier, not Wi-Fi/IP exposure. Airplane mode is not proof of untrackability, and powering off is stronger (see [cryptophone-guide-en.md](cryptophone-guide-en.md), section 9.1). [**Advice**](#tag-advice)
 
 ### 4.3 Screen lock
 
-Path: **Settings → Security & privacy → Device unlock**. **[Official]**
+Path: **Settings → Security & privacy → Device unlock**. [**Official**](#tag-official)
 
-- Use a **random PIN of at least 6 digits**, or better a **passphrase** (several random words / long alphanumeric). Avoid birthdays and reused codes. **[Advice]** GrapheneOS supports passwords of up to 128 characters, including diceware passphrases. **[Official]**
-- Enable **PIN scrambling** (randomizes the keypad layout; applies to the lock screen and SIM PIN). **[Official]** It reduces shoulder-surfing and smudge leaks at the cost of speed.
-- Biometrics are a convenience, not your main secret. GrapheneOS offers **two-factor fingerprint unlock** (fingerprint plus a PIN), allowing a strong passphrase as the primary method. **[Official]** It also permits only 5 total fingerprint attempts (stock Android allows 20 with delays), which also lets you disable fingerprint unlock by deliberately failing 5 times with a different finger. **[Official]** Disable biometrics if you expect to be compelled to unlock.
-- Use **Lockdown** to disable biometric unlock quickly: hold the power button, then tap Lockdown (if no menu appears, check Settings → System → Gestures → Press & hold power button). It temporarily disables biometrics, requires the PIN or password and hides lock-screen notifications (privacygear.nl, a secondary source; GrapheneOS's own pages do not describe it). **[Advice]** Do not count on it returning the phone to the at-rest (BFU) state; power off or reboot for that. **[Advice]**
+- Use a **random PIN of at least 6 digits**, or better a **passphrase** (several random words / long alphanumeric). Avoid birthdays and reused codes. [**Advice**](#tag-advice) GrapheneOS supports passwords of up to 128 characters, including diceware passphrases. [**Official**](#tag-official)
+- Enable **PIN scrambling** (randomizes the keypad layout; applies to the lock screen and SIM PIN). [**Official**](#tag-official) It reduces shoulder-surfing and smudge leaks at the cost of speed.
+- Biometrics are a convenience, not your main secret. GrapheneOS offers **two-factor fingerprint unlock** (fingerprint plus a PIN), allowing a strong passphrase as the primary method. [**Official**](#tag-official) It also permits only 5 total fingerprint attempts (stock Android allows 20 with delays), which also lets you disable fingerprint unlock by deliberately failing 5 times with a different finger. [**Official**](#tag-official) Disable biometrics if you expect to be compelled to unlock.
+- Use **Lockdown** to disable biometric unlock quickly: hold the power button, then tap Lockdown (if no menu appears, check Settings → System → Gestures → Press & hold power button). It temporarily disables biometrics, requires the PIN or password and hides lock-screen notifications (privacygear.nl, a secondary source; GrapheneOS's own pages do not describe it). [**Advice**](#tag-advice) Do not count on it returning the phone to the at-rest (BFU) state; power off or reboot for that. [**Advice**](#tag-advice)
 
 ### 4.4 Auto-reboot, USB-C and other security settings
 
-- **Auto-reboot** reboots a locked device after a set time, returning data to the encrypted at-rest state (BFU). Default is **18 hours**; range 10 minutes to 72 hours, or off. **[Official]** Shorter is more protective and more disruptive.
-- **USB-C port** (**Settings → Security → Exploit protection**; the official usage page also writes "Security & privacy" for the parent menu, so the label may vary **[Official]**) has five modes: Off, Charging-only, **Charging-only when locked** (default), Charging-only when locked except before first unlock, On. **[Official]**
-- Wi-Fi and Bluetooth auto-turn-off settings exist (labels "Turn off Wi-Fi automatically" and "Turn off Bluetooth automatically" in the GrapheneOS Settings source) **[Official]**; an NFC auto-turn-off setting was added in 2025 and later temporarily removed **[Official, release notes]**. **[Verify]** the menu location: no official page gives a path.
+- **Auto-reboot** reboots a locked device after a set time, returning data to the encrypted at-rest state (BFU). Default is **18 hours**; range 10 minutes to 72 hours, or off. [**Official**](#tag-official) Shorter is more protective and more disruptive.
+- **USB-C port** (**Settings → Security → Exploit protection**; the official usage page also writes "Security & privacy" for the parent menu, so the label may vary [**Official**](#tag-official)) has five modes: Off, Charging-only, **Charging-only when locked** (default), Charging-only when locked except before first unlock, On. [**Official**](#tag-official)
+- Wi-Fi and Bluetooth auto-turn-off settings exist (labels "Turn off Wi-Fi automatically" and "Turn off Bluetooth automatically" in the GrapheneOS Settings source) [**Official**](#tag-official); an NFC auto-turn-off setting was added in 2025 and later temporarily removed [**Official, release notes**](#tag-official). <a id="verify-menu-bt-wifi"></a>[**Verify**](#verify-menu-bt-wifi) the menu location: no official page gives a path.
 
 ### 4.5 Updates and update channels
 
-- The System Updater checks about every six hours and installs signed updates over the air. Keep it enabled. **[Official]**
-- Channels: **Stable**, **Beta**, **Alpha**. Releases move Alpha → Beta → Stable. Downgrades generally are not possible, so use **Stable** unless you accept temporary issues. **[Official]**
+- The System Updater checks about every six hours and installs signed updates over the air. Keep it enabled. [**Official**](#tag-official)
+- Channels: **Stable**, **Beta**, **Alpha**. Releases move Alpha → Beta → Stable. Downgrades generally are not possible, so use **Stable** unless you accept temporary issues. [**Official**](#tag-official)
 - Updating is one of the most valuable habits. Reboot when asked to finish an update.
 
 ---
@@ -231,28 +255,28 @@ Path: **Settings → Security & privacy → Device unlock**. **[Official]**
 | Area | What to do | Notes |
 |---|---|---|
 | **Updates** | Keep auto-updates on, stay on Stable | Support ends when the vendor stops firmware updates |
-| **Screen lock quality** | 6+ digit random PIN or passphrase, PIN scrambling | The secure element limits guesses (20 total attempts with escalating delays) **[Official]** |
-| **Auto-lock timeout** | Short screen timeout; lock immediately on power button | Convenience vs. exposure **[Advice]** |
+| **Screen lock quality** | 6+ digit random PIN or passphrase, PIN scrambling | The secure element limits guesses (20 total attempts with escalating delays) [**Official**](#tag-official) |
+| **Auto-lock timeout** | Short screen timeout; lock immediately on power button | Convenience vs. exposure [**Advice**](#tag-advice) |
 | **Auto-reboot** | 18 h default; shorter for higher risk | Reboots return the phone to BFU |
 | **USB accessories** | Keep "Charging-only when locked" (or stricter) | Accept new USB peripherals only when unlocked and trusted |
-| **Bluetooth / Wi-Fi** | Off when not needed; use auto-turn-off; Wi-Fi uses per-connection MAC randomization by default **[Official]** | Scanning toggles under **Settings → Location → Location services** are off by default |
-| **Location** | Deny, or "while in use"; prefer approximate location | GrapheneOS routes SUPL via its own proxy by default and offers a toggle **[Official]** |
+| **Bluetooth / Wi-Fi** | Off when not needed; use auto-turn-off; Wi-Fi uses per-connection MAC randomization by default [**Official**](#tag-official) | Scanning toggles under **Settings → Location → Location services** are off by default |
+| **Location** | Deny, or "while in use"; prefer approximate location | GrapheneOS routes SUPL via its own proxy by default and offers a toggle [**Official**](#tag-official) |
 | **Camera / microphone** | Grant per use ("only this time"/"while using") | Use the global quick toggles if available |
-| **Clipboard** | Don't copy secrets into shared clipboards | Clipboard sharing to/from the parent profile can be blocked for Private Space on recent releases (release notes, 2025-05; setting "Cross-profile shared clipboard" in the GrapheneOS Settings source) **[Official]**; **[Verify]** the exact menu path |
+| **Clipboard** | Don't copy secrets into shared clipboards | Clipboard sharing to/from the parent profile can be blocked for Private Space on recent releases (release notes, 2025-05; setting "Cross-profile shared clipboard" in the GrapheneOS Settings source) [**Official**](#tag-official); <a id="verify-menu-clipboard"></a>[**Verify**](#verify-menu-clipboard) the exact menu path |
 | **Lock-screen notifications** | Hide sensitive content | Settings → Notifications (label varies) |
 | **App permissions** | Review in Permission manager and Privacy dashboard | Remove unused apps entirely |
-| **Sensors / features** | Use the **Sensors** permission (denied apps get zeroed data) and global toggles | Can be denied by default for new apps **[Official]** |
+| **Sensors / features** | Use the **Sensors** permission (denied apps get zeroed data) and global toggles | Can be denied by default for new apps [**Official**](#tag-official) |
 
 ### Browser
 
-Use **Vanadium**, the built-in hardened Chromium, which also provides the system WebView. **[Official]** Chromium-based browsers have the strongest sandbox and site isolation of the browser families, according to the project. **[Official]** Don't expect Vanadium alone to prevent fingerprinting or IP tracking: hiding the IP address requires an intermediary such as a VPN or Tor. **[Advice]** JavaScript JIT is off by default in Vanadium, with a per-site toggle, and extension support is not planned. **[Official]** Extra browsers add attack surface; install them only for a reason.
+Use **Vanadium**, the built-in hardened Chromium, which also provides the system WebView. [**Official**](#tag-official) Chromium-based browsers have the strongest sandbox and site isolation of the browser families, according to the project. [**Official**](#tag-official) Don't expect Vanadium alone to prevent fingerprinting or IP tracking: hiding the IP address requires an intermediary such as a VPN or Tor. [**Advice**](#tag-advice) JavaScript JIT is off by default in Vanadium, with a per-site toggle, and extension support is not planned. [**Official**](#tag-official) Extra browsers add attack surface; install them only for a reason.
 
 ### DNS and what it actually changes
 
-- Private DNS (DNS-over-TLS) only encrypts DNS lookups. The destination IP is still visible and domain names still leak through TLS SNI. It is "recommended, but not an alternative to Tor or a VPN". **[Official]**
-- **Default (Automatic):** keep it for normal use. In Automatic mode Android uses DNS-over-TLS opportunistically when the network's DNS servers support it. That protects against a passive listener only, because an active attacker can force a fallback to unencrypted DNS. **[Official]**
-- **Custom server:** entering a hostname in **Settings → Network & internet → Private DNS** forces authenticated DNS-over-TLS with no fallback. Private DNS takes precedence over DNS provided by a VPN app. Websites can detect your DNS server and use it for fingerprinting. **[Official]**
-- **If you use a VPN, set Private DNS to Off.** The project recommends against a configured Private DNS server while a VPN is in use and strongly recommends fully disabling it when using a VPN on any secondary profile, because each profile has its own VPN configuration while Private DNS is global, so the two interact strangely, especially with multiple profiles. The 2025-07 release notes also say Android's Private DNS needs a significant overhaul for secondary profiles and VPNs after two VPN leaks were fixed. **[Official]** If you want filtering with a VPN, use a VPN app that does both (for example RethinkDNS). **[Official]**
+- Private DNS (DNS-over-TLS) only encrypts DNS lookups. The destination IP is still visible and domain names still leak through TLS SNI. It is "recommended, but not an alternative to Tor or a VPN". [**Official**](#tag-official)
+- **Default (Automatic):** keep it for normal use. In Automatic mode Android uses DNS-over-TLS opportunistically when the network's DNS servers support it. That protects against a passive listener only, because an active attacker can force a fallback to unencrypted DNS. [**Official**](#tag-official)
+- **Custom server:** entering a hostname in **Settings → Network & internet → Private DNS** forces authenticated DNS-over-TLS with no fallback. Private DNS takes precedence over DNS provided by a VPN app. Websites can detect your DNS server and use it for fingerprinting. [**Official**](#tag-official)
+- **If you use a VPN, set Private DNS to Off.** The project recommends against a configured Private DNS server while a VPN is in use and strongly recommends fully disabling it when using a VPN on any secondary profile, because each profile has its own VPN configuration while Private DNS is global, so the two interact strangely, especially with multiple profiles. The 2025-07 release notes also say Android's Private DNS needs a significant overhaul for secondary profiles and VPNs after two VPN leaks were fixed. [**Official**](#tag-official) If you want filtering with a VPN, use a VPN app that does both (for example RethinkDNS). [**Official**](#tag-official)
 - Choosing a DNS provider moves trust to that provider. It does not make you anonymous.
 
 ---
@@ -261,9 +285,9 @@ Use **Vanadium**, the built-in hardened Chromium, which also provides the system
 
 ### 6.1 User profiles and when to use them
 
-Profiles each have their own encrypted storage, app data, and keys. The **Owner** profile is special: it stores sensitive system-wide data, must be unlocked after reboot first, and cannot see other profiles' data. **[Official]**
+Profiles each have their own encrypted storage, app data, and keys. The **Owner** profile is special: it stores sensitive system-wide data, must be unlocked after reboot first, and cannot see other profiles' data. [**Official**](#tag-official)
 
-Suggested layout **[Advice]**:
+Suggested layout [**Advice**](#tag-advice):
 
 | Profile | Purpose |
 |---|---|
@@ -272,22 +296,22 @@ Suggested layout **[Advice]**:
 | Google/untrusted | Sandboxed Google Play and Google-dependent apps |
 | Sensitive identity | Only for a separate role (see [section 9](#9-anonymity-realistic-opsec)) |
 
-- Use **End session** (power menu or user switcher) when done. It fully purges that profile's keys from memory and puts it back at rest. Not possible for Owner without reboot. **[Official]**
-- Secondary profiles can be set not to run in the background. Android's **Private Space** and **work profile** are also supported; GrapheneOS adds settings such as clipboard blocking and non-delayed locking for Private Space on recent releases. **[Official, release notes]**
+- Use **End session** (power menu or user switcher) when done. It fully purges that profile's keys from memory and puts it back at rest. Not possible for Owner without reboot. [**Official**](#tag-official)
+- Secondary profiles can be set not to run in the background. Android's **Private Space** and **work profile** are also supported; GrapheneOS adds settings such as clipboard blocking and non-delayed locking for Private Space on recent releases. [**Official, release notes**](#tag-official)
 - Profiles separate app data and keys. They do not make a profile anonymous or unlinkable: all profiles share the same hardware, SIM, IP address and your habits, and a reused phone number, email address, name, contact, file or writing style links identities again. Treat profiles as compartments for data, not as disguises.
 
 ### 6.2 App isolation
 
 Apps are sandboxed from each other by default. Most hardening here is about **choosing fewer apps**, putting risky ones in a separate profile, and using the scoping permissions below.
 
-### 6.3 Storage Scopes and Contact Scopes **[Official]**
+### 6.3 Storage Scopes and Contact Scopes [**Official**](#tag-official)
 
 - **Storage Scopes**: an app that wants broad file access sees only the files/folders you pick, instead of all storage.
 - **Contact Scopes**: an app sees only the contacts you choose.
 
 Use them whenever an app requests storage/contacts access.
 
-### 6.4 Network permission and Sensors permission **[Official]**
+### 6.4 Network permission and Sensors permission [**Official**](#tag-official)
 
 - The **Network** permission blocks direct and indirect network access per app (and per profile); the app sees "network down". Block it for offline tools (calculator, notes, offline PDF viewer). You can toggle it during app installation. Enabled by default for compatibility.
 - The **Sensors** permission covers accelerometer, gyroscope, compass and other sensors not covered by Android permissions; denied apps get zeroed data. It can be disabled by default for newly installed apps in **Settings → Security & privacy → More security & privacy**.
@@ -295,42 +319,42 @@ Use them whenever an app requests storage/contacts access.
 ### 6.5 PIN scrambling, Duress, and device seizure
 
 - Enable **PIN scrambling** (see 4.3).
-- **Duress PIN/password** **[Official]**: entering it irreversibly wipes the device (and installed eSIMs) anywhere credentials are requested. Set under **Settings → Security & privacy → Device unlock → Duress Password** in the Owner profile. A PIN and a password must both be set. It is not a remote wipe.
+- **Duress PIN/password** [**Official**](#tag-official): entering it irreversibly wipes the device (and installed eSIMs) anywhere credentials are requested. Set under **Settings → Security & privacy → Device unlock → Duress Password** in the Owner profile. A PIN and a password must both be set. It is not a remote wipe.
 
-> ⚠️ **Danger:** Duress wipe is irreversible. Make an encrypted backup first, never test it casually, and don't make it identical to your real credentials (the real one takes precedence, so no wipe would occur). Whether to use it at all is a legal and personal-risk decision; destroying data during an investigation can be unlawful or criminally relevant depending on jurisdiction. Wiping data during a compelled unlock can be treated as obstruction in some jurisdictions. Refusing to provide a passcode can itself be an offence in some jurisdictions. Get local legal advice before relying on Duress, auto-wipe, or refusal strategies. **[Advice] [Verify]** the rules in your country: no country-specific legal statement is made here.
+> ⚠️ **Danger:** Duress wipe is irreversible. Make an encrypted backup first, never test it casually, and don't make it identical to your real credentials (the real one takes precedence, so no wipe would occur). Whether to use it at all is a legal and personal-risk decision; destroying data during an investigation can be unlawful or criminally relevant depending on jurisdiction. Wiping data during a compelled unlock can be treated as obstruction in some jurisdictions. Refusing to provide a passcode can itself be an offence in some jurisdictions. Get local legal advice before relying on Duress, auto-wipe, or refusal strategies. [**Advice**](#tag-advice) <a id="verify-legal"></a>[**Verify**](#verify-legal) the rules in your country: no country-specific legal statement is made here.
 
-- Disk encryption: data is encrypted with keys tied to your credential and secure hardware. **After a reboot (BFU), data is at its most protected**; after first unlock (AFU) more is in memory. Short auto-reboot and powering off before border crossings or when handing over a device reduce exposure, but only if the passphrase is strong. They do not defeat seizure, coercion or lawful access. **[Advice]**
-- A weak PIN is the main weakness against forensic tools; use a long passphrase for high risk, which also stays strong against an attacker who defeats the secure element's rate limit. **[Advice]**
+- Disk encryption: data is encrypted with keys tied to your credential and secure hardware. **After a reboot (BFU), data is at its most protected**; after first unlock (AFU) more is in memory. Short auto-reboot and powering off before border crossings or when handing over a device reduce exposure, but only if the passphrase is strong. They do not defeat seizure, coercion or lawful access. [**Advice**](#tag-advice)
+- A weak PIN is the main weakness against forensic tools; use a long passphrase for high risk, which also stays strong against an attacker who defeats the secure element's rate limit. [**Advice**](#tag-advice)
 
 ### 6.6 Physical security and travel
 
 - Prefer powering the phone off (or rebooting) before situations where you may lose control of it.
-- Power the phone off before checkpoints; disable biometrics (Lockdown) when approaching them or when compelled-unlock risk exists. Know the local rules on compelled unlocking first; refusing may itself be an offence in some jurisdictions. **[Verify]**
+- Power the phone off before checkpoints; disable biometrics (Lockdown) when approaching them or when compelled-unlock risk exists. Know the local rules on compelled unlocking first; refusing may itself be an offence in some jurisdictions. [**Verify**](#verify-legal)
 - Consider a travel device or minimal data on the phone when traveling to high-risk places or regions.
 - Avoid public USB charging; use your own charger/cable.
-- Check Auditor attestation if the device was out of your control; this only works if Auditor was paired right after installation. **[Advice]**
+- Check Auditor attestation if the device was out of your control; this only works if Auditor was paired right after installation. [**Advice**](#tag-advice)
 
 ### 6.7 Backups without creating a privacy hole
 
-- GrapheneOS includes **Seedvault** for encrypted backups to local storage or a storage-provider app. The project says it plans a replacement because Seedvault's upstream was taken over by a group not sharing its goals, so treat it as the best available option for now. **[Official]**
-- Keep backups **encrypted**, with the key not stored on the same device. Test restoring. Avoid unencrypted cloud backups. Don't back up the Duress setup or 2FA seeds somewhere less protected than the phone. **[Advice]**
+- GrapheneOS includes **Seedvault** for encrypted backups to local storage or a storage-provider app. The project says it plans a replacement because Seedvault's upstream was taken over by a group not sharing its goals, so treat it as the best available option for now. [**Official**](#tag-official)
+- Keep backups **encrypted**, with the key not stored on the same device. Test restoring. Avoid unencrypted cloud backups. Don't back up the Duress setup or 2FA seeds somewhere less protected than the phone. [**Advice**](#tag-advice)
 
 ---
 
 ## 7. Apps: safe installation and selection
 
-### 7.1 Sources, in order of preference **[Advice]** unless stated
+### 7.1 Sources, in order of preference [**Advice**](#tag-advice) unless stated
 
-1. **GrapheneOS App Store**: installs GrapheneOS-built apps and Sandboxed Google Play, distributes further apps from its repository (including Accrescent and the PDF Viewer), and updates them automatically. **[Official]**
+1. **GrapheneOS App Store**: installs GrapheneOS-built apps and Sandboxed Google Play, distributes further apps from its repository (including Accrescent and the PDF Viewer), and updates them automatically. [**Official**](#tag-official)
 2. **Official developer releases** (for example the project's GitHub release) with **signature/hash verification**; you must then track updates yourself.
-3. **Accrescent**: a separate app store aimed at security and privacy. It is in alpha according to its own site and is available in the GrapheneOS App Store (the project's app repository contains it). **[Official]** It is ranked below verified developer releases here because of its alpha status. **[Advice]**
+3. **Accrescent**: a separate app store aimed at security and privacy. It is in alpha according to its own site and is available in the GrapheneOS App Store (the project's app repository contains it). [**Official**](#tag-official) It is ranked below verified developer releases here because of its alpha status. [**Advice**](#tag-advice)
 4. **F-Droid**: all-open-source apps. Apps with reproducible builds are published with the developer's signature after F-Droid verifies the build, other apps are signed with F-Droid's own keys, and F-Droid builds on its own timeline, so updates can lag (see 7.5). Prefer the developer's own channel when available. Use it for apps not available elsewhere, and keep only those you need.
-5. **Aurora Store**: an alternative Play frontend. It still needs a Google account but fetches shared credentials from Aurora's service by default. **[Official, usage guide]** Play apps are mostly closed source **[Advice]** (general inference), so use it only as a last resort. **[Advice]** Play services/Store updates are only accepted from the GrapheneOS App Store or the Play Store itself. **[Official, release notes]**
+5. **Aurora Store**: an alternative Play frontend. It still needs a Google account but fetches shared credentials from Aurora's service by default. [**Official, usage guide**](#tag-official) Play apps are mostly closed source [**Advice**](#tag-advice) (general inference), so use it only as a last resort. [**Advice**](#tag-advice) Play services/Store updates are only accepted from the GrapheneOS App Store or the Play Store itself. [**Official, release notes**](#tag-official)
 6. **Manual APK**: only when necessary. Verify the developer's published signing certificate fingerprint (for example with `apksigner verify --print-certs file.apk`) or checksum from a channel separate from the download. Grant "Install unknown apps" to one specific app only, and revoke it afterward.
 
 > ⚠️ **Warning:** random APK sites, modded apps, "cracked" apps, root (Magisk), LSPosed/Xposed and unofficial ROMs weaken or remove the security model. Rooting breaks verified boot guarantees; modules run with extreme privileges. Don't.
 
-### 7.2 Evaluating an app before installing **[Advice]**
+### 7.2 Evaluating an app before installing [**Advice**](#tag-advice)
 
 - Who publishes it? Open source? Recent updates? Independent audit?
 - What does it request? Does it need network/contacts/location at all?
@@ -343,15 +367,15 @@ Use them whenever an app requests storage/contacts access.
 
 Fewer apps, fewer permissions, fewer accounts. Avoid bloated, closed-source, telemetry-heavy apps when a simple alternative exists. Don't install "privacy" apps just because of the name.
 
-### 7.4 Example choices (not official endorsements, unless noted) **[Advice]**
+### 7.4 Example choices (not official endorsements, unless noted) [**Advice**](#tag-advice)
 
 | Category | Suggested option | Alternative | Notes |
 |---|---|---|---|
 | Browser | **Vanadium** (built-in) | Tor Browser for specific use | Weaker security than Vanadium; see section 9. Don't add many browsers |
-| Messaging | **Signal** | Other audited E2EE messengers | End-to-end encrypted. Signal registration requires a phone number. Usernames can hide your phone number from other users, but they do not remove the phone-number requirement or eliminate all metadata exposure. Signal is not in the GrapheneOS app repository **[Official]**; whether Accrescent offers it is **[Verify]** (Accrescent publishes no app list); the direct APK route is described in 7.5. |
+| Messaging | **Signal** | Other audited E2EE messengers | End-to-end encrypted. Signal registration requires a phone number. Usernames can hide your phone number from other users, but they do not remove the phone-number requirement or eliminate all metadata exposure. Signal is not in the GrapheneOS app repository [**Official**](#tag-official); whether Accrescent offers it is <a id="verify-signal-accrescent"></a>[**Verify**](#verify-signal-accrescent) (Accrescent publishes no app list); the direct APK route is described in 7.5. |
 | 2FA/authenticator | **Aegis** (open source) | Hardware security key (FIDO2) | Back up the vault encrypted; keep recovery codes offline |
 | Password manager | **KeePassDX** or Bitwarden | KeePassXC on computer | Local database avoids a cloud account |
-| VPN client | **Mullvad** or **WireGuard** official apps | RethinkDNS (VPN + filtering) | GrapheneOS's FAQ recommends the official WireGuard app and the official Mullvad app. VPN choice depends on trust, jurisdiction, logging policy, payment method and threat model **[Official]** |
+| VPN client | **Mullvad** or **WireGuard** official apps | RethinkDNS (VPN + filtering) | GrapheneOS's FAQ recommends the official WireGuard app and the official Mullvad app. VPN choice depends on trust, jurisdiction, logging policy, payment method and threat model [**Official**](#tag-official) |
 | Maps/navigation | **Organic Maps** or OsmAnd | Web maps in the browser | Offline maps need no network |
 | Email | **Proton Mail** or similar E2E-capable provider | Self-hosted | Email is metadata-rich; does not give anonymity. Proton's privacy policy says it keeps no permanent IP logs by default, may keep IP logs temporarily to combat abuse, and discloses limited data only if legally obligated; other providers differ |
 | Cloud/storage | **Cryptomator** over a storage you choose | Local-only | Encrypt before upload |
@@ -367,12 +391,12 @@ Every store below installs apps into the normal app sandbox. The differences are
 
 | Store | Account required? | Google dependency | Update mechanism | App selection (size, quality) | Security model | Recommendation: daily driver / cryptophone |
 |---|---|---|---|---|---|---|
-| **GrapheneOS App Store** | No account is mentioned as a requirement in the GrapheneOS documentation **[Official]** | None for the store itself; it can also install Sandboxed Google Play, which is optional **[Official]** | Updates the apps from its repository in the background, including the Sandboxed Google Play components **[Official]** | Small: GrapheneOS's own apps (for example Camera, PDF Viewer, Auditor, Vanadium), the Sandboxed Google Play components and a few others such as the Accrescent client **[Official]** | First-party app repository and client maintained by the GrapheneOS project and integrated into the OS **[Official]** | Daily driver: first choice. Cryptophone: first choice; install Sandboxed Google Play only if a required app cannot work otherwise (section 8) **[Advice]** |
-| **Accrescent** | No account required | None stated by the project | Automatic, unattended, unprivileged updates on Android 12 and later | Small curated catalogue; the project is in alpha | App signing key pinning for first-time installs, signed repository metadata, and no remote APK signing, so developers keep control of their signing keys | Daily driver: use it for the apps it carries. Cryptophone: the same. Install the client from the GrapheneOS App Store, as Accrescent's own site recommends for GrapheneOS users. In the source order of 7.1 it ranks below verified developer releases only because of its alpha status **[Advice]** |
-| **F-Droid** | No account needed; F-Droid says it does not track what you install | No Google dependency stated; an independent repository of free and open-source apps | Through the F-Droid client; speed depends on the app, because F-Droid builds on its own timeline and some apps are outdated or lag behind the developer **[Advice]** | Large catalogue of free and open-source apps; quality and update speed vary by app and repository **[Advice]** | Apps are checked for security problems before they are added. For apps with reproducible builds F-Droid publishes the developer's signature after verifying the build; other apps are signed with F-Droid's own keys | Daily driver: fallback for apps the stores above do not carry; check that the app is maintained. Cryptophone: fallback only (rule in 7.1) **[Advice]** |
-| **Aurora Store** | Yes, a Google account is needed. By default it fetches shared account credentials from Aurora Store's service (shared dummy accounts handed out through token dispensers); you can also sign in with your personal Google account **[Official]** | Full: it is an alternative frontend to the Google Play Store **[Official]** | Updates the Play apps it installed. GrapheneOS accepts updates of Google Play services, the Google Services Framework and the Play Store only from its own App Store or the Play Store itself, so do not use Aurora for those **[Official]** | The whole Play catalogue, mostly closed source **[Advice]** | Developer-signed Play apps, but installs run through Google under a shared or a personal account. Shared dummy accounts are not anonymity: you rely on the dispenser service, the account is shared with many other users, and Google can still correlate device information and installs; a personal account ties installs to you **[Advice]** | Daily driver: last resort, only in a separate profile and never with your main Google account. Cryptophone: do not use **[Advice]** |
-| **Obtainium** | No store account; it reads the developers' own release pages (for example GitHub, GitLab or F-Droid) | None, unless the app itself needs Google | Checks the release pages you configured, notifies you of new releases and installs them; it is not a store with its own review | Whatever apps publish APKs on supported release pages; you choose and configure each source yourself | Only as strong as your trust in each source and your verification: it does not make an unsigned or compromised release safe. Obtainium itself publishes a signing-certificate fingerprint and a PGP key for verification (Obtainium README, section "Installation"); its source is on GitHub (<https://github.com/ImranR98/Obtainium>) | Daily driver: optional helper for apps that are only distributed as APKs and that the stores above do not carry. Cryptophone: not by default; it adds an app with the "Install unknown apps" permission and network access, so use it only for a documented need and verify each source **[Advice]** |
-| **Manual APK download** | No store account; the developer's site decides | None, unless the app itself needs Google | No automatic updates: every update needs a manual re-download and signature verification (for Signal, signal.org/android/apk gives the SHA-256 fingerprint and an apksigner check) | Whatever the developer publishes; not every app offers an APK | Depends entirely on your verification: compare the signing-certificate fingerprint or checksum through a channel separate from the download, grant "Install unknown apps" to one app only and revoke it afterwards **[Advice]** | Daily driver: only when an app is available nowhere else. Cryptophone: only for apps unavailable elsewhere (for example Signal); verify the signature and update by hand **[Advice]** |
+| **GrapheneOS App Store** | No account is mentioned as a requirement in the GrapheneOS documentation [**Official**](#tag-official) | None for the store itself; it can also install Sandboxed Google Play, which is optional [**Official**](#tag-official) | Updates the apps from its repository in the background, including the Sandboxed Google Play components [**Official**](#tag-official) | Small: GrapheneOS's own apps (for example Camera, PDF Viewer, Auditor, Vanadium), the Sandboxed Google Play components and a few others such as the Accrescent client [**Official**](#tag-official) | First-party app repository and client maintained by the GrapheneOS project and integrated into the OS [**Official**](#tag-official) | Daily driver: first choice. Cryptophone: first choice; install Sandboxed Google Play only if a required app cannot work otherwise (section 8) [**Advice**](#tag-advice) |
+| **Accrescent** | No account required | None stated by the project | Automatic, unattended, unprivileged updates on Android 12 and later | Small curated catalogue; the project is in alpha | App signing key pinning for first-time installs, signed repository metadata, and no remote APK signing, so developers keep control of their signing keys | Daily driver: use it for the apps it carries. Cryptophone: the same. Install the client from the GrapheneOS App Store, as Accrescent's own site recommends for GrapheneOS users. In the source order of 7.1 it ranks below verified developer releases only because of its alpha status [**Advice**](#tag-advice) |
+| **F-Droid** | No account needed; F-Droid says it does not track what you install | No Google dependency stated; an independent repository of free and open-source apps | Through the F-Droid client; speed depends on the app, because F-Droid builds on its own timeline and some apps are outdated or lag behind the developer [**Advice**](#tag-advice) | Large catalogue of free and open-source apps; quality and update speed vary by app and repository [**Advice**](#tag-advice) | Apps are checked for security problems before they are added. For apps with reproducible builds F-Droid publishes the developer's signature after verifying the build; other apps are signed with F-Droid's own keys | Daily driver: fallback for apps the stores above do not carry; check that the app is maintained. Cryptophone: fallback only (rule in 7.1) [**Advice**](#tag-advice) |
+| **Aurora Store** | Yes, a Google account is needed. By default it fetches shared account credentials from Aurora Store's service (shared dummy accounts handed out through token dispensers); you can also sign in with your personal Google account [**Official**](#tag-official) | Full: it is an alternative frontend to the Google Play Store [**Official**](#tag-official) | Updates the Play apps it installed. GrapheneOS accepts updates of Google Play services, the Google Services Framework and the Play Store only from its own App Store or the Play Store itself, so do not use Aurora for those [**Official**](#tag-official) | The whole Play catalogue, mostly closed source [**Advice**](#tag-advice) | Developer-signed Play apps, but installs run through Google under a shared or a personal account. Shared dummy accounts are not anonymity: you rely on the dispenser service, the account is shared with many other users, and Google can still correlate device information and installs; a personal account ties installs to you [**Advice**](#tag-advice) | Daily driver: last resort, only in a separate profile and never with your main Google account. Cryptophone: do not use [**Advice**](#tag-advice) |
+| **Obtainium** | No store account; it reads the developers' own release pages (for example GitHub, GitLab or F-Droid) | None, unless the app itself needs Google | Checks the release pages you configured, notifies you of new releases and installs them; it is not a store with its own review | Whatever apps publish APKs on supported release pages; you choose and configure each source yourself | Only as strong as your trust in each source and your verification: it does not make an unsigned or compromised release safe. Obtainium itself publishes a signing-certificate fingerprint and a PGP key for verification (Obtainium README, section "Installation"); its source is on GitHub (<https://github.com/ImranR98/Obtainium>) | Daily driver: optional helper for apps that are only distributed as APKs and that the stores above do not carry. Cryptophone: not by default; it adds an app with the "Install unknown apps" permission and network access, so use it only for a documented need and verify each source [**Advice**](#tag-advice) |
+| **Manual APK download** | No store account; the developer's site decides | None, unless the app itself needs Google | No automatic updates: every update needs a manual re-download and signature verification (for Signal, signal.org/android/apk gives the SHA-256 fingerprint and an apksigner check) | Whatever the developer publishes; not every app offers an APK | Depends entirely on your verification: compare the signing-certificate fingerprint or checksum through a channel separate from the download, grant "Install unknown apps" to one app only and revoke it afterwards [**Advice**](#tag-advice) | Daily driver: only when an app is available nowhere else. Cryptophone: only for apps unavailable elsewhere (for example Signal); verify the signature and update by hand [**Advice**](#tag-advice) |
 
 **Remaining risk:** the store you choose changes who learns which apps you install and how quickly fixes reach you. It does not make an app trustworthy, and no login mode of any Google-based store makes you anonymous.
 
@@ -380,13 +404,13 @@ Every store below installs apps into the normal app sandbox. The differences are
 
 ## 8. Sandboxed Google Play
 
-### What it is **[Official]**
+### What it is [**Official**](#tag-official)
 
 A compatibility layer that lets you install the **official** Google Play services and Play Store as **ordinary sandboxed apps**. Both get no special privileges, no system-level access, and can only reach what you grant them like any app. GrapheneOS does not use Play services for OS functions even when installed. Apps in a profile can use them only if they are installed in that profile and the app chooses to.
 
 ### It is optional
 
-Most users can run many apps without it. Prefer to use as much as possible without Google Play, and treat it as the exception. **[Official]**
+Most users can run many apps without it. Prefer to use as much as possible without Google Play, and treat it as the exception. [**Official**](#tag-official)
 
 ### When it makes sense / when to avoid
 
@@ -396,14 +420,14 @@ Most users can run many apps without it. Prefer to use as much as possible witho
 | You need push notifications from Google-dependent apps | Your threat model excludes Google involvement |
 | You want to keep them away from your main profile | You would sign in with your main Google account in a profile with sensitive data |
 
-### Installation **[Official/Advice]**
+### Installation [**Official/Advice**](#tag-official)
 
 1. Open the **App Store** and select **Google Play services**. This installs Google Play services and Play Store together (they depend on each other). Do not remove Google Services Framework if it exists from a pre-Android-15 install.
-2. Choose where to install it. **Owner profile:** the simplest approach (the official guide calls it that), but less isolated; acceptable if you accept Google software in your main environment. **[Advice]** **Separate user or work profile:** **recommended for privacy-focused and higher-risk users**, because only the apps in that profile can use it and the Owner profile (which holds system-wide sensitive data) stays free of Google software. **[Advice]** The cryptophone guide is stricter and allows only the separate-profile option.
+2. Choose where to install it. **Owner profile:** the simplest approach (the official guide calls it that), but less isolated; acceptable if you accept Google software in your main environment. [**Advice**](#tag-advice) **Separate user or work profile:** **recommended for privacy-focused and higher-risk users**, because only the apps in that profile can use it and the Owner profile (which holds system-wide sensitive data) stays free of Google software. [**Advice**](#tag-advice) The cryptophone guide is stricter and allows only the separate-profile option.
 3. Give **Google Play services** a **battery-optimization exception** if you need reliable push notifications (not needed for the Play Store app).
 4. Optional configuration at **Settings → Apps → Sandboxed Google Play**.
 
-### Permission minimization **[Official/Advice]**
+### Permission minimization [**Official/Advice**](#tag-official)
 
 - By default, Google Play location requests are rerouted to the OS location service, so you don't need to grant Play services location. Keep it that way.
 - Deny contacts, SMS, phone, camera, microphone unless an app needs it. Don't grant "Allow all the time" location to Play services.
@@ -411,10 +435,10 @@ Most users can run many apps without it. Prefer to use as much as possible witho
 
 ### Risks and tradeoffs
 
-- A Google account is **not anonymous**. Signing in links the profile to an identity at Google. Signing in is optional unless you want Play Store installs, in-app purchases or account-dependent app features. **[Official]** Google may also see which apps you install and information about the device; treat that as likely. **[Advice]**
-- Creating a Google account often requests phone verification. **[Advice]**
-- A separate profile limits data access, but it does not prevent Google from correlating the account through IP address, device characteristics, timing, or account activity. **[Advice]**
-- Compatibility is high but not complete. A few privileged features are unavailable. **[Official]**
+- A Google account is **not anonymous**. Signing in links the profile to an identity at Google. Signing in is optional unless you want Play Store installs, in-app purchases or account-dependent app features. [**Official**](#tag-official) Google may also see which apps you install and information about the device; treat that as likely. [**Advice**](#tag-advice)
+- Creating a Google account often requests phone verification. [**Advice**](#tag-advice)
+- A separate profile limits data access, but it does not prevent Google from correlating the account through IP address, device characteristics, timing, or account activity. [**Advice**](#tag-advice)
+- Compatibility is high but not complete. A few privileged features are unavailable. [**Official**](#tag-official)
 - Profile isolation: put Google-dependent apps in one profile, keep sensitive data and identities in another, and don't share clipboard/files between them.
 - Updates come through the GrapheneOS App Store.
 
@@ -428,7 +452,7 @@ A phone is a bundle of identifiers and a location sensor. Software hardening doe
 
 | Factor | What it reveals / links |
 |---|---|
-| **SIM/eSIM, IMSI, phone number** | Identify you to the carrier. Carriers log which cell towers you use (location). An eSIM has its own identifier (EID) and often requires an account, ID or payment at activation **[Verify]** (no primary source found for the account, ID or payment part). Registration rules vary by country |
+| **SIM/eSIM, IMSI, phone number** | Identify you to the carrier. Carriers log which cell towers you use (location). An eSIM has its own identifier (EID) and often requires an account, ID or payment at activation <a id="verify-esim"></a>[**Verify**](#verify-esim) (no primary source found for the account, ID or payment part). Registration rules vary by country |
 | **IMEI** | Device hardware identifier seen by the network; changing SIMs does not change it. Carriers can log IMSI/IMEI pairs, so a new SIM in the same phone, or an old SIM in a new phone, can link identities; EFF: the network observes SIM and device together |
 | **Mobile-network metadata** | Call/SMS/data records, tower connections, timing. A VPN does not hide that your phone connects to the network. Calls, SMS and VoLTE are carrier services and are not covered by a VPN |
 | **IP address** | Seen by every server you contact; hidden only by VPN/Tor (shifting trust) |
@@ -441,12 +465,12 @@ A phone is a bundle of identifiers and a location sensor. Software hardening doe
 
 | Tool | Helps with | Does not help with |
 |---|---|---|
-| **Public Wi-Fi** | Avoids tying traffic to your home IP | Account logins, payments, the cellular network, the Wi-Fi operator seeing traffic. Captive portals may request a phone number or email address, and CCTV, payment records and location patterns can still link a person to a place. GrapheneOS randomizes MAC per connection by default **[Official]** |
-| **VPN** | Hides destinations and content from your local network/ISP (they can still see that a VPN is in use); hides your IP from sites | Moves trust to the VPN provider; doesn't hide cellular location, accounts, or behavior; leaks if misconfigured. Use the **Always-on VPN + "Block connections without VPN"** settings **[Official]**. With the block enabled, a captive-portal login cannot be completed; lift it temporarily only if you accept that. **[Advice]** |
+| **Public Wi-Fi** | Avoids tying traffic to your home IP | Account logins, payments, the cellular network, the Wi-Fi operator seeing traffic. Captive portals may request a phone number or email address, and CCTV, payment records and location patterns can still link a person to a place. GrapheneOS randomizes MAC per connection by default [**Official**](#tag-official) |
+| **VPN** | Hides destinations and content from your local network/ISP (they can still see that a VPN is in use); hides your IP from sites | Moves trust to the VPN provider; doesn't hide cellular location, accounts, or behavior; leaks if misconfigured. Use the **Always-on VPN + "Block connections without VPN"** settings [**Official**](#tag-official). With the block enabled, a captive-portal login cannot be completed; lift it temporarily only if you accept that. [**Advice**](#tag-advice) |
 | **Tor** | Hides your IP from sites through multi-hop routing | Doesn't hide what you reveal by logging in or by content; makes traffic stand out; slow; exit nodes can see unencrypted traffic |
 
 - **When a VPN helps:** untrusted networks, hiding from the local ISP or a site, or appearing from a stable IP region. **When it doesn't:** you log into accounts tied to you, or the threat is the carrier or the VPN provider.
-- **Tor on mobile:** the project notes Tor Browser's security is weak compared to Vanadium and that Tor itself can make you more of a target. **[Official]** If you need strong Tor-based anonymity, a dedicated setup, meaning a separate device or a separate operating system and not merely a separate app, is more appropriate than a daily-use phone. App routing through Orbot or Tor VPN is not a substitute for Tor Browser's usage rules, and the Tor Project says the Tor VPN beta should not be used for sensitive activities. A GrapheneOS maintainer wrote in the project's issue tracker (2020) that Orbot is poorly implemented and maintained and that the project will not fork or bundle it. **[Official]** The FAQ and usage pages name no Tor app.
+- **Tor on mobile:** the project notes Tor Browser's security is weak compared to Vanadium and that Tor itself can make you more of a target. [**Official**](#tag-official) If you need strong Tor-based anonymity, a dedicated setup, meaning a separate device or a separate operating system and not merely a separate app, is more appropriate than a daily-use phone. App routing through Orbot or Tor VPN is not a substitute for Tor Browser's usage rules, and the Tor Project says the Tor VPN beta should not be used for sensitive activities. A GrapheneOS maintainer wrote in the project's issue tracker (2020) that Orbot is poorly implemented and maintained and that the project will not fork or bundle it. [**Official**](#tag-official) The FAQ and usage pages name no Tor app.
 - Android allows one VPN per profile; don't stack VPN apps blindly.
 
 ### Separate identities instead of just tools
@@ -569,7 +593,7 @@ This reduces unnecessary data exposure and limits correlation. It does not creat
 
 ## 13. Sources
 
-**Official GrapheneOS documentation (primary).** All **[Official]** statements above come from these:
+**Official GrapheneOS documentation (primary).** All [**Official**](#tag-official) statements above come from these:
 
 - Home: <https://grapheneos.org/>
 - Install overview: <https://grapheneos.org/install/>
@@ -591,7 +615,7 @@ This reduces unnecessary data exposure and limits correlation. It does not creat
 - Tor Project: <https://www.torproject.org/>
 - Signal, phone-number privacy and usernames: <https://signal.org/blog/phone-number-privacy-usernames/>
 
-Statements marked **[Advice]** are this guide's judgment, not official positions. Items marked **[Verify]**: *Verify against current official GrapheneOS documentation.*
+Statements marked [**Advice**](#tag-advice) are this guide's judgment, not official positions. Items marked [**Verify**](#tag-verify): *Verify against current official GrapheneOS documentation.*
 
 ---
 
@@ -606,10 +630,10 @@ The previous version of this guide was reviewed. Kept: the bootloader-locking em
 | Install "Google Services Framework, Play services and Play Store" | Current official guide: installing Google Play services installs Play Store; GSF is only from older installs and shouldn't be removed there | Section 8 |
 | Profile called "Anonymous" | Misleading: a profile does not create anonymity | "Sensitive identity" profile, correlation warnings |
 | Wasted, Sentry, LockUp recommended with caveats | Third-party tools with high privileges; not GrapheneOS features; remote-wipe depends on connectivity | Removed from recommendations |
-| Tor tips and Orbot claims | Unverified details | Cut to cautious statements; Orbot remains marked **[Verify]** |
+| Tor tips and Orbot claims | Unverified details | Cut to cautious statements; Orbot remains marked [**Verify**](#tag-verify) |
 | "disable OEM unlocking/developer options when done" | Official flow: toggle on the final setup screen, on by default | Section 3.3 |
 | Sources: AnarSec, Civic Security, PrivacyGear, Privacy Guides | Secondary/third-party sources for security claims | Replaced with official docs |
-| Hardcoded menu paths | Paths vary by release | Paths shown with **[Verify]** where uncertain |
+| Hardcoded menu paths | Paths vary by release | Paths shown with [**Verify**](#tag-verify) where uncertain |
 
 Removed: unverified specifics and tool recommendations. Added: threat models, device list, CLI method, verification steps, checklists, tables.
 
@@ -621,4 +645,4 @@ Removed: unverified specifics and tool recommendations. Added: threat models, de
 - **Corrected:** DNS guidance, Play services installation, anonymous-profile wording, OEM-unlocking steps, source quality.
 - **Added:** introduction and threat models, supported devices, CLI install method, verification of installation, update channels, app-source evaluation, app category table, Sandboxed Google Play section, OPSEC section, travel checklist, common mistakes, reference tables.
 - **Removed:** Wasted/Sentry/LockUp recommendations, third-party blog citations as authority, unverifiable claims.
-- **Review pass:** bootloader locking now explicitly gated on a successful, verified flash, with an exit path after failed verification; Play profile advice made consistent (separate profile recommended); Signal, SIM/IMEI/eSIM, VPN and Tor/Proton wording tightened; seizure and legal wording made non-absolute and jurisdiction-aware; Accrescent demoted; unverified claims tagged [Verify] or [Advice]; German grammar and EN/DE parity fixed.
+- **Review pass:** bootloader locking now explicitly gated on a successful, verified flash, with an exit path after failed verification; Play profile advice made consistent (separate profile recommended); Signal, SIM/IMEI/eSIM, VPN and Tor/Proton wording tightened; seizure and legal wording made non-absolute and jurisdiction-aware; Accrescent demoted; unverified claims tagged [Verify](#tag-verify) or [Advice](#tag-advice); German grammar and EN/DE parity fixed.
