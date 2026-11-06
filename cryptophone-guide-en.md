@@ -26,7 +26,7 @@ German version: [cryptophone-guide-de.md](cryptophone-guide-de.md)
 - [Behavioral OPSEC / Verhaltens-OPSEC](#behavioral-opsec--verhaltens-opsec)
 - [10. Travel and physical security](#10-travel-and-physical-security)
 - [11. Incident response](#11-incident-response)
-- [12. Useful websites / Nützliche Webseiten](#12-useful-websites--nützliche-webseiten)
+- [12. Useful websites](#12-useful-websites)
 - [13. Checklists](#13-checklists)
 - [14. Anti-patterns](#14-anti-patterns)
 - [15. Essential vs optional, and verification status](#15-essential-vs-optional-and-verification-status)
@@ -579,7 +579,7 @@ For each scenario: immediate actions, what to assume is compromised, what to rot
 
 ---
 
-## 12. Useful websites / Nützliche Webseiten
+## 12. Useful websites
 
 Only official or reputable nonprofit sources. Trust levels are this guide's assessment.
 
