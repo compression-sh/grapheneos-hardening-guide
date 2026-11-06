@@ -566,7 +566,7 @@ For each scenario: immediate actions, what to assume is compromised, what to rot
 
 ---
 
-## 12. Useful websites / Nützliche Webseiten
+## 12. Useful websites
 
 Only official or reputable nonprofit sources. Trust levels are this guide's assessment.
 
