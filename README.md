@@ -19,6 +19,12 @@ Two practical guides for [GrapheneOS](https://grapheneos.org/) on supported Pixe
 
 **Start with the daily-driver guide** unless your threat model already demands the stricter setup. The cryptophone guide builds on it and does not replace it. If you follow the cryptophone guide, treat a separate device, separate SIM or eSIM, and a separate network usage pattern as the realistic boundary. Profile separation alone is compartmentalization, not a complete boundary.
 
+## Threat models
+
+- **Daily-driver guide:** protects against common risks such as theft, opportunistic malware, tracking by apps and ad networks, and data exposure. It stays practical, with optional stricter settings, and treats high-risk use only as a first look.
+- **Cryptophone guide:** assumes a higher-risk, single-purpose device used for sensitive communication and research. It adds a strict device policy, a tiny app list, SIM/eSIM and behavioral discipline, travel and seizure planning, and incident response. A well-resourced targeted attacker is only partly considered.
+- Both guides reduce risk. Neither makes a phone anonymous or unbreakable.
+
 ## What the guides cover
 
 Both guides:
@@ -57,6 +63,8 @@ A `[Verify]` tag is a deliberate flag, not decoration. Menu names and device lis
 
 The guides were checked against the official GrapheneOS pages (install, usage, features, FAQ, releases, app repository) and, for the cryptophone guide, spot-checked against named external primary sources (EFF, Freedom of the Press Foundation, Reporters Without Borders, Tor Project, Signal, app project pages). Separate security, OPSEC, fact-check, language and consistency reviews were run over the files.
 
+Open `[Verify]` / `[Prüfen]` markers, counted by occurrence (this includes a few mentions in the tag legend): **daily-driver guide 12 per file, cryptophone guide 24 per file**. Each marker states its reason in the guide itself.
+
 Still unconfirmed and marked `[Verify]` / `[Prüfen]` in the text:
 
 - The GrapheneOS project's stance on Tor VPN (its stance on Orbot appears only in a 2020 issue-tracker comment)
@@ -64,6 +72,10 @@ Still unconfirmed and marked `[Verify]` / `[Prüfen]` in the text:
 - Carrier and SIM details: whether eSIM activation needs an account, ID or payment, and whether a SIM-less phone's IMEI is visible to the network
 - Signal: availability on Accrescent
 - The text of the current CBP border-search directive (a scanned PDF), non-US legal and border rules, and a few per-country details
+
+## Deprecated files
+
+`grapheneos-hardening-guide-en.md` and `grapheneos-hardening-guide-de.md` are deprecation notices for an older guide. The four guides linked above are authoritative.
 
 ## Sources
 
