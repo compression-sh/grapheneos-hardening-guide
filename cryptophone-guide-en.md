@@ -199,6 +199,44 @@ For every setting: the recommended cryptophone value, why, what it protects agai
 
 ---
 
+### 4.5 Anti-forensic apps: Wasted, Sentry, and why GrapheneOS Duress is better
+
+This section complements the Duress row in section 4.1. It does not replace it.
+
+**What they are.**
+
+| App | What it does | Source |
+|---|---|---|
+| **Wasted** | Locks the device and optionally wipes it (factory reset) on a trigger: PanicKit, tile or shortcut, a message with a secret code, a device not unlocked for a set time, a USB data connection while locked, a fake messenger app being launched, or a duress password entered in the companion app "Duress" **[External]** | Wasted README, <https://github.com/x13a/Wasted>; F-Droid, <https://f-droid.org/packages/me.lucky.wasted/> |
+| **Sentry** | A "tiny app to enforce security policies": limits failed password attempts, can disable USB data connections and safe boot, and notifies on failed attempts. Same developer account (x13a); Wasted's README points to it for "base security" **[External]** | Sentry README, <https://github.com/x13a/Sentry> |
+
+Both are open source under GPL-3 **[External]**. They were widely discussed in the GrapheneOS community; that popularity is not evidence that they are safe to use now **[Advice]**.
+
+**Why they are not recommended.**
+
+| Reason | Detail | Limitation |
+|---|---|---|
+| Exploited by forensics companies | GrapheneOS stated on 13 June 2024 that forensics companies exploited apps like Wasted and Sentry against users, by abusing their attempt to wipe the device when an attack is detected; GrapheneOS addressed it as part of its duress PIN/password feature and reported it so that Google fixed it across Android (<https://x.com/GrapheneOS/status/1801294115407106186>; a social-media post, not grapheneos.org documentation) **[External]** | The other reasons below stand on their own |
+| Reliability | A forum user reports that they are no longer reliable since around Android 15, especially over longer timeframes, because the timers do not always start automatically as they rely on foreground services (<https://discuss.grapheneos.org/d/28627-wasted-sentry>; one community report, not an official statement or a test) **[External]** **[Advice]**. Neither README mentions Android 15. The F-Droid page lists version 1.5.10 from 2022 as the newest, and both READMEs say the architecture will be redesigned because Google changed the DevicePolicyManager API **[External]** | An app whose behavior depends on background services can silently fail when you need it |
+| Sensitive permissions | Wasted: Device Admin, Foreground Service and Receive Boot Completed (Wasted README). Sentry: Device Admin, Device Owner (set via ADB), notification listener and query-all-packages (Sentry README) **[External]** | Each is a privileged component on a device that should have a tiny app list (section 7) |
+| Attack surface | Third-party code with high privileges adds surface without a reliable benefit over the built-in feature **[Advice]** | Open source does not by itself make an app safe to run with these privileges |
+
+**Why GrapheneOS Duress is better.**
+
+| Property | Duress | Limitation |
+|---|---|---|
+| Built into the OS | No third-party app to install, update or trust **[Official]** | It is still an OS feature you must configure deliberately (section 4.1) |
+| Wipe | Irreversible; also removes installed eSIMs **[Official]** | Irreversible means irreversible, including after an accidental trigger |
+| Credentials | Requires both a PIN and a password; entering the real credential takes precedence, so no wipe occurs **[Official]** | It only helps when the adversary types credentials into the live device |
+| Permissions and attack surface | No extra app permissions or app attack surface **[Advice]** | It is not a proof of absence of flaws |
+| Reboot, interruption, where it is accepted | The wipe does not require a reboot and cannot be interrupted; it triggers when the duress credential is entered anywhere the device credentials are requested, on the lock screen and in OS prompts **[Official]** (GrapheneOS features page, <https://grapheneos.org/features>) | Once triggered there is no undo, including after an accidental entry **[Advice]** |
+
+**Legal and ethical warning.** Using a duress PIN to wipe a device during a lawful inspection or a compelled unlock can have serious legal consequences, for example obstruction charges in the US **[Advice]**. Rules differ by country (section 10.2). Get local legal advice before relying on any duress or wipe feature. Duress is not a "get out of jail free" card: it destroys your own data, and it can look like destruction of evidence.
+
+**Recommendation.** Do not install Wasted or Sentry on a cryptophone **[Advice]**. They are intentionally not in the app lists of this guide. If your threat model justifies it, use the built-in Duress PIN/password instead **[Official]**, and accept the trade-off: once triggered, the wipe cannot be undone.
+
+---
+
 ## 5. Profiles and compartments
 
 ### 5.1 Recommended minimal structure
@@ -523,6 +561,8 @@ Only official or reputable nonprofit sources. Trust levels are this guide's asse
 | Cryptomator | <https://cryptomator.org/android/>, <https://github.com/cryptomator/android> and <https://docs.cryptomator.org/android/setup/> | Official app pages | Optional encrypted storage | Official | Channel and license differ; verify |
 | Organic Maps | <https://organicmaps.app/> and <https://github.com/organicmaps/organicmaps> | Offline maps | Optional | Official | Funding is described as precarious by the project |
 | Tor Browser download | <https://download.torproject.org/> | Official Tor Browser for Android download | Only if Tor is justified | Official | Do not install add-ons or use other browsers with Tor |
+| GrapheneOS X post, 13 June 2024 | <https://x.com/GrapheneOS/status/1801294115407106186> | GrapheneOS statement that forensics companies exploited wipe apps such as Wasted and Sentry | Section 4.5 | Statement by the project, but a social-media post, not documentation | Posts can be edited or deleted; not on grapheneos.org |
+| GrapheneOS forum thread "wasted-sentry" | <https://discuss.grapheneos.org/d/28627-wasted-sentry> | Community discussion of Wasted and Sentry, including Android 15 reliability reports | Section 4.5 | User content, not official | A single user's observation; not independently tested here |
 | privacygear.nl GrapheneOS hardening guide | <https://privacygear.nl/en/guides/grapheneos-hardening-guide/> | Settings walkthrough with menu paths (Lockdown, NFC, memory tagging) | Cross-checking menu paths | Secondary source (reviewed 5 Nov 2026, GrapheneOS 2026110200); not official GrapheneOS documentation | Paths vary by release and Android version; it recommends Orbot for app-level Tor, which a GrapheneOS maintainer criticized in 2020 |
 
 Excluded on purpose: VPN affiliate lists, "anonymous phone" sellers, cracked-app sites, random Telegram channels, influencer blogs as primary sources, and any tool that requires trusting an unknown third party.

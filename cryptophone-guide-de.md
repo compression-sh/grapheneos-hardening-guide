@@ -199,6 +199,44 @@ Für jede Einstellung: der empfohlene Cryptophone-Wert, warum, wogegen sie schü
 
 ---
 
+### 4.5 Anti-Forensik-Apps: Wasted, Sentry und warum GrapheneOS Duress besser ist
+
+Dieser Abschnitt ergänzt die Duress-Zeile in Abschnitt 4.1. Er ersetzt sie nicht.
+
+**Was sie sind.**
+
+| App | Was sie tut | Quelle |
+|---|---|---|
+| **Wasted** | Sperrt das Gerät und löscht es optional (Zurücksetzen auf Werkseinstellungen) bei einem Auslöser: PanicKit, Kachel oder Verknüpfung, eine Nachricht mit einem geheimen Code, ein Gerät, das eine festgelegte Zeit nicht entsperrt wurde, eine USB-Datenverbindung im gesperrten Zustand, der Start einer gefälschten Messenger-App oder ein Duress-Passwort, das in der Begleit-App „Duress“ eingegeben wird **[Extern]** | Wasted-README, <https://github.com/x13a/Wasted>; F-Droid, <https://f-droid.org/packages/me.lucky.wasted/> |
+| **Sentry** | Eine „winzige App zur Durchsetzung von Sicherheitsrichtlinien“: begrenzt fehlgeschlagene Passworteingaben, kann USB-Datenverbindungen und den abgesicherten Start deaktivieren und meldet fehlgeschlagene Versuche. Dasselbe Entwicklerkonto (x13a); das Wasted-README verweist dafür auf „Basissicherheit“ **[Extern]** | Sentry-README, <https://github.com/x13a/Sentry> |
+
+Beide sind Open Source unter GPL-3 **[Extern]**. Sie wurden in der GrapheneOS-Community viel diskutiert; diese Beliebtheit ist kein Beleg dafür, dass sie heute sicher nutzbar sind **[Empfehlung]**.
+
+**Warum sie nicht empfohlen werden.**
+
+| Grund | Detail | Einschränkung |
+|---|---|---|
+| Von Forensik-Firmen ausgenutzt | GrapheneOS erklärte am 13. Juni 2024, dass Forensik-Firmen Apps wie Wasted und Sentry gegen Nutzer ausgenutzt haben, indem sie deren Löschversuch bei erkanntem Angriff missbrauchten; GrapheneOS hat das im Rahmen seiner Duress-PIN/-Passwort-Funktion behoben und gemeldet, sodass Google es in ganz Android behoben hat (<https://x.com/GrapheneOS/status/1801294115407106186>; ein Social-Media-Beitrag, keine Dokumentation auf grapheneos.org) **[Extern]** | Die übrigen Gründe gelten auch ohne diese Aussage |
+| Zuverlässigkeit | Ein Forennutzer berichtet, dass sie seit etwa Android 15 nicht mehr zuverlässig sind, besonders über längere Zeiträume, weil die Timer nicht immer automatisch starten, da sie auf Foreground Services beruhen (<https://discuss.grapheneos.org/d/28627-wasted-sentry>; ein Community-Bericht, keine offizielle Aussage und kein Test) **[Extern]** **[Empfehlung]**. Keines der READMEs erwähnt Android 15. Die F-Droid-Seite nennt Version 1.5.10 von 2022 als neueste, und beide READMEs sagen, dass die Architektur neu gestaltet wird, weil Google die DevicePolicyManager-API geändert hat **[Extern]** | Eine App, deren Verhalten von Hintergrunddiensten abhängt, kann genau dann stillschweigend ausfallen, wenn du sie brauchst |
+| Sensible Berechtigungen | Wasted: Device Admin, Foreground Service und Receive Boot Completed (Wasted-README). Sentry: Device Admin, Device Owner (per ADB gesetzt), Notification Listener und Query-All-Packages (Sentry-README) **[Extern]** | Jede davon ist eine privilegierte Komponente auf einem Gerät, das nur eine winzige App-Liste haben soll (Abschnitt 7) |
+| Angriffsfläche | Drittanbieter-Code mit hohen Rechten vergrößert die Angriffsfläche ohne verlässlichen Vorteil gegenüber der eingebauten Funktion **[Empfehlung]** | Open Source macht eine App mit diesen Rechten nicht von selbst sicher |
+
+**Warum GrapheneOS Duress besser ist.**
+
+| Eigenschaft | Duress | Einschränkung |
+|---|---|---|
+| In das Betriebssystem eingebaut | Keine Drittanbieter-App, die installiert, aktualisiert oder der vertraut werden muss **[Offiziell]** | Es bleibt eine OS-Funktion, die du bewusst konfigurieren musst (Abschnitt 4.1) |
+| Löschung | Unumkehrbar; entfernt auch installierte eSIMs **[Offiziell]** | Unumkehrbar heißt unumkehrbar, auch nach versehentlichem Auslösen |
+| Zugangsdaten | Erfordert sowohl PIN als auch Passwort; die Eingabe der echten Zugangsdaten hat Vorrang, daher erfolgt keine Löschung **[Offiziell]** | Hilft nur, wenn der Angreifer Zugangsdaten am entsperrten Live-Gerät eingibt |
+| Berechtigungen und Angriffsfläche | Keine zusätzlichen App-Berechtigungen und keine zusätzliche App-Angriffsfläche **[Empfehlung]** | Kein Beweis, dass es keine Fehler gibt |
+| Neustart, Unterbrechung, wo es akzeptiert wird | Die Löschung benötigt keinen Neustart und kann nicht unterbrochen werden; sie wird ausgelöst, wenn die Duress-Zugangsdaten überall eingegeben werden, wo die Gerätezugangsdaten abgefragt werden, auf dem Sperrbildschirm und in OS-Abfragen **[Offiziell]** (GrapheneOS-Seite „Features“, <https://grapheneos.org/features>) | Einmal ausgelöst, gibt es kein Zurück, auch nicht nach versehentlicher Eingabe **[Empfehlung]** |
+
+**Rechtlicher und ethischer Hinweis.** Eine Duress-PIN zum Löschen eines Geräts bei einer rechtmäßigen Kontrolle oder einer erzwungenen Entsperrung zu nutzen, kann ernste rechtliche Folgen haben, zum Beispiel Anklagen wegen Behinderung der Justiz in den USA **[Empfehlung]**. Die Regeln unterscheiden sich je nach Land (Abschnitt 10.2). Hole lokalen Rechtsrat ein, bevor du dich auf eine Duress- oder Löschfunktion verlässt. Duress ist keine „Freikarte“: Es vernichtet deine eigenen Daten und kann wie die Vernichtung von Beweismitteln wirken.
+
+**Empfehlung.** Installiere Wasted oder Sentry nicht auf einem Cryptophone **[Empfehlung]**. Sie stehen absichtlich in keiner App-Liste dieses Leitfadens. Wenn dein Bedrohungsmodell es rechtfertigt, nutze stattdessen die eingebaute Duress-PIN/das Duress-Passwort **[Offiziell]** und akzeptiere den Kompromiss: Einmal ausgelöst, lässt sich die Löschung nicht rückgängig machen.
+
+---
+
 ## 5. Profile und Kompartimente
 
 ### 5.1 Empfohlene minimale Struktur
@@ -523,6 +561,8 @@ Nur offizielle oder renommierte gemeinnützige Quellen. Vertrauensstufen sind di
 | Cryptomator | <https://cryptomator.org/android/>, <https://github.com/cryptomator/android> und <https://docs.cryptomator.org/android/setup/> | Offizielle App-Seiten | Optionaler verschlüsselter Speicher | Offiziell | Kanal und Lizenz unterscheiden sich; prüfen |
 | Organic Maps | <https://organicmaps.app/> und <https://github.com/organicmaps/organicmaps> | Offline-Karten | Optional | Offiziell | Das Projekt beschreibt seine Finanzierung selbst als prekär |
 | Tor-Browser-Download | <https://download.torproject.org/> | Offizieller Download des Tor Browsers für Android | Nur wenn Tor begründet ist | Offiziell | Keine Add-ons installieren und Tor nicht mit anderen Browsern nutzen |
+| GrapheneOS-X-Beitrag, 13. Juni 2024 | <https://x.com/GrapheneOS/status/1801294115407106186> | GrapheneOS-Aussage, dass Forensik-Firmen Lösch-Apps wie Wasted und Sentry ausgenutzt haben | Abschnitt 4.5 | Aussage des Projekts, aber ein Social-Media-Beitrag, keine Dokumentation | Beiträge können bearbeitet oder gelöscht werden; nicht auf grapheneos.org |
+| GrapheneOS-Forenthread „wasted-sentry“ | <https://discuss.grapheneos.org/d/28627-wasted-sentry> | Community-Diskussion zu Wasted und Sentry, einschließlich Berichten zur Zuverlässigkeit unter Android 15 | Abschnitt 4.5 | Nutzerinhalt, nicht offiziell | Beobachtung eines einzelnen Nutzers; hier nicht unabhängig getestet |
 | privacygear.nl GrapheneOS-Härtungsleitfaden | <https://privacygear.nl/en/guides/grapheneos-hardening-guide/> | Einstellungs-Anleitung mit Menüpfaden (Lockdown, NFC, Memory Tagging) | Gegenprüfung von Menüpfaden | Sekundärquelle (geprüft am 05.11.2026, GrapheneOS 2026110200); keine offizielle GrapheneOS-Dokumentation | Pfade variieren je nach Version und Android-Version; es empfiehlt Orbot für Tor auf App-Ebene, was ein GrapheneOS-Maintainer 2020 kritisiert hat |
 
 Bewusst ausgeschlossen: VPN-Affiliate-Listen, Verkäufer „anonymer Telefone“, Seiten mit gecrackten Apps, zufällige Telegram-Kanäle, Influencer-Blogs als Primärquellen und jedes Werkzeug, das Vertrauen in einen unbekannten Dritten verlangt.
