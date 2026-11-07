@@ -44,12 +44,12 @@ Cryptophone guide only: behavioral OPSEC, incident response, anti-patterns, and 
 
 | Tag (English) | Tag (German) | Meaning |
 |---|---|---|
-| **[Official]** | **[Offiziell]** | Stated in official GrapheneOS documentation |
-| **[External]** | **[Extern]** | Stated by a named non-GrapheneOS primary source (cryptophone guide only) |
+| **[Official]** | **[Offiziell]** | GrapheneOS provenance: primary documentation or GrapheneOS project source; distinguish documentation from code, pin revisions where possible, no distributed-APK test implied |
+| **[External]** | **[Extern]** | Named non-GrapheneOS provenance in either guide: own project documentation/code is primary for its own claims; third-party guides are secondary, not automatically GOS-Official |
 | **[Advice]** | **[Empfehlung]** | This repository's judgment or general security practice |
-| **[Verify]** | **[Prüfen]** | Could not be confirmed. *Verify against current official documentation.* |
+| **[Verify]** | **[Prüfen]** | Unconfirmed claim: direct topic link with a reason. Meta references to this notation instead point to the tag legend, not to an unresolved claim |
 
-A `[Verify]` tag is a deliberate flag, not decoration. Menu names and device lists change between GrapheneOS releases, so check the official pages before relying on a path or a model.
+Provenance and evidence are separate axes: `Official`/`External` identify whose source it is; primary documentation, project source, secondary source and unconfirmed describe evidence. Signal, Android and Accrescent own documentation is external AND primary. privacygear.nl is a secondary source for the NFC path. A source tag is not a practical test or security guarantee.
 
 Each guide has a Tag legend section with the definitions and links to the open `[Verify]` topics: [daily-driver (EN)](daily-driver-guide-en.md#tag-legend), [daily-driver (DE)](daily-driver-guide-de.md#tag-legend), [cryptophone (EN)](cryptophone-guide-en.md#tag-legend), [cryptophone (DE)](cryptophone-guide-de.md#tag-legend).
 
@@ -63,16 +63,16 @@ Each guide has a Tag legend section with the definitions and links to the open `
 
 ## Verification status
 
-The guides were checked against the official GrapheneOS pages (install, usage, features, FAQ, releases, app repository) and, for the cryptophone guide, spot-checked against named external primary sources (EFF, Freedom of the Press Foundation, Reporters Without Borders, Tor Project, Signal, app project pages). Separate security, OPSEC, fact-check, language and consistency reviews were run over the files.
+The guides reference GrapheneOS primary documentation (install, usage, features, FAQ, releases, app repository), pinned GrapheneOS project source and external project documentation/source, with third-party guides identified separately as secondary. Local editorial review R01–R17 has been applied; overall acceptance remains a separate gate. Source reading and static document checks do not test distributed apps, devices, networking or practical security.
 
-Open `[Verify]` / `[Prüfen]` topics (counted by topic, not by tag occurrence): **3 in the daily-driver guide, 6 in the cryptophone guide**; each guide's Tag legend lists them with links (the counts are maintained by hand and need updating when a topic is resolved). Each marker states its reason in the guide itself.
+Open verification **categories, not individual claims: 3 in Daily, 6 in Crypto**, per language. Count occurrences as exactly linked `Verify`/`Prüfen` labels, bold or plain, excluding verbs and inline-code mentions; topics are unique `verify-*` base anchors, excluding `tag-verify`. Current per-language occurrences: **Daily 10 (6 direct-topic + 4 meta), Crypto 29 (26 direct-topic + 3 meta)**. Meta links lead to `#tag-verify`; direct links lead to the applicable category reason. Ten body/end-matter meta references already had the correct legend destination; this is not ten newly resolved claims.
 
 Still unconfirmed and marked `[Verify]` / `[Prüfen]` in the text:
 
 - The GrapheneOS project's stance on Tor VPN (its stance on Orbot appears only in a 2020 issue-tracker comment)
-- Menu paths and labels that vary by release (the Bluetooth/Wi-Fi auto-off and Private Space clipboard paths are taken from the GrapheneOS Settings source, other paths are not audited)
-- Carrier and SIM details: whether eSIM activation needs an account, ID or payment, and how far a SIM-less phone's equipment identifier is exposed in an emergency call, which depends on the network
-- Non-US legal and border rules, and a few per-country details such as SIM registration rules
+- Release-dependent menu paths and untested build behavior: NFC auto-off restoration, captive-portal login with VPN blocking, Sentry compatibility, Tor Android window behavior and the Accrescent licensing documentation/source discrepancy (grouped under `verify-menu-paths`; not positively confirmed or practically tested)
+- Carrier and SIM details: virtual-number reassignment and country-specific carrier/KYC rules under SIM rules; eSIM/data-eSIM account, ID and payment requirements under eSIM; SIM-less equipment-identifier exposure in emergency calls remains network-dependent
+- Country-specific legal, border and compelled-unlock rules. Check the rules of every country you enter or transit; obtain qualified local advice where needed. / Prüfe die Regeln jedes Landes, das du betrittst oder durchreist; hole bei Bedarf qualifizierten lokalen Rat ein. No legal advice is provided here.
 
 ## Sources
 
@@ -89,4 +89,4 @@ Still unconfirmed and marked `[Verify]` / `[Prüfen]` in the text:
 - CBP, Border Search of Electronic Devices (Directive No. 3340-049B): <https://www.cbp.gov/document/directives/cbp-directive-no-3340-049b-border-search-electronic-devices>
 - Signal: <https://signal.org/>, [Signal PIN and Registration Lock](https://support.signal.org/hc/en-us/articles/360007059792-Signal-PIN), [re-registering with the Signal PIN](https://support.signal.org/hc/en-us/articles/5440120029082-Re-registering-using-your-Signal-PIN), [APK download and verification](https://signal.org/android/apk/)
 
-Each guide contains its own source list (daily-driver guide: section 13; cryptophone guide: "Useful websites / Nützliche Webseiten").
+Each guide contains its own language-specific source list: Daily section 13 [EN](daily-driver-guide-en.md#13-sources) / [DE](daily-driver-guide-de.md#13-quellen); Crypto section 12 [EN](cryptophone-guide-en.md#12-useful-websites) / [DE](cryptophone-guide-de.md#12-useful-websites--nützliche-webseiten).
