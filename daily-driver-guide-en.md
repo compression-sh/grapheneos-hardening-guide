@@ -1,8 +1,8 @@
 # GrapheneOS Guide (English)
 
-> **Status:** written 2026-11-05 and checked against the official GrapheneOS pages (features, usage, FAQ, web/CLI installer, releases). Menu names and device lists change between releases. Where something may differ on your device or version, the text says so. For anything marked [**Verify**](#tag-verify): *Check the relevant current primary documentation or project source; this link is a meta reference to the notation.*
+> **Status:** written 2026-11-05 and checked against the official GrapheneOS pages (features, usage, FAQ, web/CLI installer, releases). Menu names and device lists change between releases. Where something may differ on your device or version, the text says so. For anything marked [**Verify**](#tag-verify): *Check the relevant current primary documentation or project source.*
 >
-> **Legend:** [**Official**](#tag-official) = GrapheneOS documentation or GrapheneOS project source. [**External**](#tag-external) = a named non-GrapheneOS source, primary or secondary as specified. [**Advice**](#tag-advice) = this guide's recommendation, not an official GrapheneOS statement.
+> **Legend:** [**Official**](#tag-official) = GrapheneOS documentation, project source or attributed project statements. [**External**](#tag-external) = a named non-GrapheneOS source, primary or secondary as specified. [**Advice**](#tag-advice) = this guide's recommendation, not an official GrapheneOS statement.
 
 German version: [daily-driver-guide-de.md](daily-driver-guide-de.md) · For a stricter single-purpose setup see [cryptophone-guide-en.md](cryptophone-guide-en.md)
 
@@ -29,14 +29,14 @@ German version: [daily-driver-guide-de.md](daily-driver-guide-de.md) · For a st
 <a id="tag-legend"></a>
 ## Tag legend
 
-Tags distinguish provenance (GrapheneOS or external) from evidence kind (primary documentation, project source, secondary source, or unconfirmed). Every tag links to its legend entry.
+Tags distinguish provenance (GrapheneOS or external) from evidence kind (primary documentation, project source, dated project statement, secondary source, or unconfirmed). Source and advice tags link to the legend; for unresolved claims, verification tags link to the relevant topic.
 
 | Tag | Meaning |
 |---|---|
-| <a id="tag-official"></a>**[Official]** | GrapheneOS provenance: primary GrapheneOS documentation or GrapheneOS project source. Identify documentation versus code and pin source revisions where possible; source inspection is not a distributed-APK test. |
+| <a id="tag-official"></a>**[Official]** | GrapheneOS provenance: primary documentation, project source or attributed statements by project accounts or maintainers. Identify the source type; date statements and pin code revisions where possible. A source tag is not a practical test or a guarantee of current behavior. |
 | <a id="tag-advice"></a>**[Advice]** | This guide's recommendation or general security practice; not a hard fact and not an official GrapheneOS statement. |
 | <a id="tag-external"></a>**[External]** | Non-GrapheneOS provenance, not an evidence rank: a project's own documentation/code is primary for its own claims; a third-party guide is secondary. Name the source and evidence kind; External can therefore also be primary. |
-| <a id="tag-verify"></a>**[Verify]** | An unconfirmed claim links directly to its verify-* reason; meta references to the notation link here (#tag-verify), not to a claim. Count occurrences as linked Verify/Prüfen labels, bold or plain, excluding verbs and inline code. Topics are distinct verify-* base anchors, excluding tag-verify: categories, not individual claims. |
+| <a id="tag-verify"></a>**[Verify]** | Unconfirmed claim; follow the link for details and limitations. |
 
 **Open verification topics** (categories, not individual claims; links lead to their reasons):
 - [Release-dependent paths and untested build behavior](#verify-menu-paths)
@@ -218,7 +218,7 @@ Menu names and build behavior change between releases. <a id="verify-menu-paths"
 
 - Update the OS first on a network you trust. For a higher-risk setup you may prefer setting a strong passcode before connecting.
 - A SIM or eSIM links the phone to a carrier account and a location trail. See [section 9](#9-anonymity-realistic-opsec).
-- eSIM is not more anonymous than a physical SIM; it has its own identifier (EID, per Android documentation). [**Advice**](#tag-advice) A Duress wipe also removes installed eSIM profiles [**Official**](#tag-official); that does not cancel the contract with the carrier. [**Advice**](#tag-advice)
+- eSIM is not more anonymous than a physical SIM. [**Advice**](#tag-advice) The EID identifies the device’s eUICC hardware, rather than an individual downloaded eSIM profile. [**External**](#tag-external) (<https://source.android.com/docs/core/connect/esim-euicc-api>) A Duress wipe also removes installed eSIM profiles [**Official**](#tag-official); that does not cancel the contract with the carrier. [**Advice**](#tag-advice)
 - LTE-only mode (Settings → Network & internet → SIMs → your SIM → Preferred network type) reduces remote exploitation of legacy radio code; the project says it is not a confidentiality feature. [**Official**](#tag-official) It only helps if your carrier works reliably in LTE-only. [**Advice**](#tag-advice)
 - If you do not need cellular, you can use the phone Wi-Fi-only (no SIM inserted or used). This avoids the SIM-based link to a carrier, not Wi-Fi/IP exposure. Airplane mode is not proof of untrackability, and powering off is stronger (see [cryptophone-guide-en.md, section 9.1](cryptophone-guide-en.md#91-mobile-network)). [**Advice**](#tag-advice)
 
@@ -232,6 +232,8 @@ Path: **Settings → Security & privacy → Device unlock**. [**Official**](#tag
 - Use **Lockdown** to disable biometric unlock quickly: press Power + Volume Up, then tap Lockdown. Android can also show Lockdown in the power menu after enabling Settings → Display → Advanced → Lock screen display → Show lockdown option. Until the next unlock, it disables lock-screen notifications, fingerprint/face unlocking and Extend Unlock (Google Android Help: <https://support.google.com/android/answer/9075927?hl=en>). Lockdown is not the same as powering off or returning the device to BFU; power off or reboot for that. [**Advice**](#tag-advice)
 
 ### 4.4 Auto-reboot, USB-C and other security settings
+
+BFU (Before First Unlock) refers to the state before the first unlock after a reboot; AFU (After First Unlock) refers to the state afterwards.
 
 - **Auto-reboot:** each lock starts a countdown; a successful unlock of any profile cancels it. Expiry reboots the locked device to put data at rest (BFU). It does not run while already in BFU, so it does not repeatedly reboot there. Default is **18 hours**; range 10 minutes to 72 hours, or off [**Official**](#tag-official) (<https://grapheneos.org/features#auto-reboot>). A shorter timeout trades a smaller locked AFU window for more disruption [**Advice**](#tag-advice).
 - **USB-C port** (**Settings → Security → Exploit protection**; the official usage page also writes "Security & privacy" for the parent menu, so the label may vary [**Official**](#tag-official)) has five modes: Off, Charging-only, **Charging-only when locked** (default), Charging-only when locked except before first unlock, On. [**Official**](#tag-official) If USB data are never needed, choose Charging-only or Off according to the required usability trade-off [**Advice**](#tag-advice). Off disables charging as well as data while the OS is booted. The feature does not apply while powered off, in firmware fastboot, or in charging, recovery and fastbootd modes [**Official**](#tag-official) (<https://grapheneos.org/features#usb-c-port-and-pogo-pins-control>).
@@ -341,7 +343,7 @@ Use them whenever an app requests storage/contacts access.
 ### 7.1 Sources, in order of preference [**Advice**](#tag-advice) unless stated
 
 1. **GrapheneOS App Store**: installs GrapheneOS-built apps and Sandboxed Google Play, distributes further apps from its repository (including Accrescent and the PDF Viewer), and updates them automatically. [**Official**](#tag-official)
-2. **Official developer releases** (for example the project's GitHub release) with **signature/hash verification**; you must then track updates yourself.
+2. **Official developer releases** (for example the project's GitHub release) with **signature/hash verification**. Use the app’s own updater when available; otherwise track updates yourself.
 3. **Accrescent**: a separate app store aimed at security and privacy. Its own primary site describes it as alpha [**External**](#tag-external) (<https://accrescent.app/>); GrapheneOS repository metadata separately lists an Accrescent mirror [**Official**](#tag-official) (project source: <https://github.com/GrapheneOS/apps.grapheneos.org/blob/c8e2b3fb21c420db7d4bab32ce3dd7e42afe7ea9/apps/packages/app.accrescent.client/common-props.toml>). It is ranked below verified developer releases here because of its alpha status [**Advice**](#tag-advice).
 4. **F-Droid**: all-open-source apps. Apps with reproducible builds are published with the developer's signature after F-Droid verifies the build, other apps are signed with F-Droid's own keys, and F-Droid builds on its own timeline, so updates can lag (see 7.5). Prefer the developer's own channel when available. Use it for apps not available elsewhere, and keep only those you need.
 5. **Aurora Store**: an alternative Play frontend. It still needs a Google account but fetches shared credentials from Aurora's service by default. [**Official**](#tag-official) (usage guide) Play apps are mostly closed source [**Advice**](#tag-advice) (general inference), so use it only as a last resort. [**Advice**](#tag-advice) Play services/Store updates are only accepted from the GrapheneOS App Store or the Play Store itself. [**Official**](#tag-official) (release notes)
@@ -366,7 +368,7 @@ Fewer apps, fewer permissions, fewer accounts. Avoid bloated, closed-source, tel
 
 | Category | Suggested option | Alternative | Notes |
 |---|---|---|---|
-| Browser | **Vanadium** (built-in) | Tor Browser for specific use | Weaker security than Vanadium; see section 9. Don't add many browsers |
+| Browser | **Vanadium** (built-in) | Tor Browser for specific use | Tor Browser provides weaker exploit protection than Vanadium; see section 9. Don't add many browsers |
 | Messaging | **Signal** | Other audited E2EE messengers | End-to-end encrypted. Signal registration requires a phone number. Usernames can hide your phone number from other users, but they do not remove the phone-number requirement or eliminate all metadata exposure. Signal is not in the GrapheneOS app repository [**Official**](#tag-official). Signal is not listed in Accrescent's repository catalogue checked on 6 November 2026 (catalogue timestamp 25 February 2026; availability can change; <https://repo.accrescent.app/repodata.1.json>). Use Signal's website APK, Google Play or another explicitly verified source instead (see 7.5). Recheck the repository if availability changes. |
 | 2FA/authenticator | **Aegis** (open source) | Hardware security key (FIDO2) | Back up the vault encrypted; keep recovery codes offline |
 | Password manager | **KeePassDX** or Bitwarden | KeePassXC on computer | Local database avoids a cloud account |
@@ -449,7 +451,7 @@ How you obtain and set up a tool matters as much as which one you pick: a VPN pa
 
 | Factor | What it reveals / links |
 |---|---|
-| **SIM/eSIM, IMSI, phone number** | Identify you to the carrier. Carriers log which cell towers you use (location). An eSIM has its own identifier (EID); activation requirements depend on the carrier and country <a id="verify-esim"></a>[**Verify**](#verify-esim) (no universal primary source found for account, ID or payment requirements). Registration rules vary by country |
+| **SIM/eSIM, IMSI, phone number** | Identify you to the carrier. Carriers log which cell towers you use (location). The EID identifies the device’s eUICC hardware, rather than an individual downloaded eSIM profile. [**External**](#tag-external) (<https://source.android.com/docs/core/connect/esim-euicc-api>) Activation requirements depend on the carrier and country <a id="verify-esim"></a>[**Verify**](#verify-esim) (no universal primary source found for account, ID or payment requirements). Registration rules vary by country |
 | **IMEI** | Device hardware identifier seen by the network; changing SIMs does not change it. Carriers can log IMSI/IMEI pairs, so a new SIM in the same phone, or an old SIM in a new phone, can link identities; EFF: the network observes SIM and device together |
 | **Mobile-network metadata** | Call/SMS/data records, tower connections, timing. A VPN does not hide that your phone connects to the network. Calls, SMS and VoLTE are carrier services and are not covered by a VPN |
 | **IP address** | Seen by every server you contact; hidden only by VPN/Tor (shifting trust) |
@@ -467,7 +469,7 @@ How you obtain and set up a tool matters as much as which one you pick: a VPN pa
 | **Tor** | Hides your IP from sites through multi-hop routing | Doesn't hide what you reveal by logging in or by content; makes traffic stand out; slow; exit nodes can see unencrypted traffic |
 
 - **When a VPN helps:** untrusted networks, hiding from the local ISP or a site, or appearing from a stable IP region. **When it doesn't:** you log into accounts tied to you, or the threat is the carrier or the VPN provider.
-- **Tor on mobile:** the project notes Tor Browser's security is weak compared to Vanadium and that Tor itself can make you more of a target. [**Official**](#tag-official) If you need strong Tor-based anonymity, a dedicated setup, meaning a separate device or a separate operating system and not merely a separate app, is more appropriate than a daily-use phone. App routing through Orbot or Tor VPN is not a substitute for Tor Browser's usage rules, and the Tor Project says the Tor VPN beta should not be used for sensitive activities. A GrapheneOS maintainer wrote in the project's issue tracker (2020) that Orbot is poorly implemented and maintained and that the project will not fork or bundle it. [**Official**](#tag-official) The FAQ and usage pages name no Tor app.
+- **Tor on mobile:** the project notes Tor Browser's security is weak compared to Vanadium and that Tor itself can make you more of a target. [**Official**](#tag-official) If you need strong Tor-based anonymity, a dedicated setup, meaning a separate device or a separate operating system and not merely a separate app, is more appropriate than a daily-use phone. App routing through Orbot or Tor VPN is not a substitute for Tor Browser's usage rules, and the Tor Project says the Tor VPN beta should not be used for sensitive activities. In a [dated issue-tracker comment from 1 May 2020](https://github.com/GrapheneOS/os-issue-tracker/issues/210#issuecomment-622457418), GrapheneOS maintainer thestinger described Orbot as poorly implemented and maintained and rejected forking or bundling it. [**Official**](#tag-official) This dated comment does not establish the project’s current assessment of Orbot or Tor VPN.
 - Android allows one VPN per profile; don't stack VPN apps blindly.
 - Use a Wi-Fi network your private phone never joins, and do not use both devices at the same times and places. [**Advice**](#tag-advice)
 
@@ -569,7 +571,7 @@ This reduces unnecessary data exposure and limits correlation. It does not creat
 
 | App type | Recommended option | Alternative | Notes |
 |---|---|---|---|
-| Browser | Vanadium | Tor Browser (special cases) | Weaker security than Vanadium; see section 9. Don't add many |
+| Browser | Vanadium | Tor Browser (special cases) | Tor Browser provides weaker exploit protection than Vanadium; see section 9. Don't add many |
 | Messaging | Signal | Other audited E2EE | Registration requires a phone number; usernames only hide it from other users |
 | 2FA | Aegis | FIDO2 key | Keep recovery offline |
 | Password manager | KeePassDX | Bitwarden | Local DB or trusted sync |
@@ -617,4 +619,4 @@ This reduces unnecessary data exposure and limits correlation. It does not creat
 - Signal Terms of Service: <https://signal.org/legal/>
 - Android developer documentation (eSIM/EID): <https://source.android.com/docs/core/connect/esim-euicc-api>
 
-Meta: Statements marked [**Advice**](#tag-advice) are this guide's judgment, not official positions. Items marked [**Verify**](#tag-verify): *Check the relevant primary documentation or project source. This link denotes the notation, not an unresolved claim.*
+[**Advice**](#tag-advice) labels identify this guide’s recommendations. [**Verify**](#tag-verify) labels identify unresolved points.
