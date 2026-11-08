@@ -36,7 +36,7 @@ Both guides:
 - VPN, Tor, Private DNS, SIM and eSIM, carrier metadata, and why they do not add up to anonymity
 - Checklists
 
-Daily-driver guide only: supported devices and why verified boot matters, first-boot setup, update channels, common mistakes, quick-reference tables, and a change log from an earlier draft (sections 14 and 15).
+Daily-driver guide only: supported devices and why verified boot matters, first-boot setup, update channels, common mistakes, and quick-reference tables.
 
 Cryptophone guide only: behavioral OPSEC, incident response, anti-patterns, and a useful-websites list.
 
@@ -44,12 +44,12 @@ Cryptophone guide only: behavioral OPSEC, incident response, anti-patterns, and 
 
 | Tag (English) | Tag (German) | Meaning |
 |---|---|---|
-| **[Official]** | **[Offiziell]** | GrapheneOS provenance: primary documentation or GrapheneOS project source; distinguish documentation from code, pin revisions where possible, no distributed-APK test implied |
+| **[Official]** | **[Offiziell]** | GrapheneOS provenance: primary documentation, project source or attributed statements by project accounts or maintainers; identify the source type and date, with no practical test implied |
 | **[External]** | **[Extern]** | Named non-GrapheneOS provenance in either guide: own project documentation/code is primary for its own claims; third-party guides are secondary, not automatically GOS-Official |
 | **[Advice]** | **[Empfehlung]** | This repository's judgment or general security practice |
 | **[Verify]** | **[Prüfen]** | Unconfirmed claim: direct topic link with a reason. Meta references to this notation instead point to the tag legend, not to an unresolved claim |
 
-Provenance and evidence are separate axes: `Official`/`External` identify whose source it is; primary documentation, project source, secondary source and unconfirmed describe evidence. Signal, Android and Accrescent own documentation is external AND primary. privacygear.nl is a secondary source for the NFC path. A source tag is not a practical test or security guarantee.
+Provenance and evidence are separate axes: `Official`/`External` identify whose source it is; primary documentation, project source, secondary source and unconfirmed describe evidence. Documentation published by Signal, Android and Accrescent is external to GrapheneOS and primary for those projects’ own claims. privacygear.nl is a secondary source for the NFC path. A source tag is not a practical test or security guarantee.
 
 Each guide has a Tag legend section with the definitions and links to the open `[Verify]` topics: [daily-driver (EN)](daily-driver-guide-en.md#tag-legend), [daily-driver (DE)](daily-driver-guide-de.md#tag-legend), [cryptophone (EN)](cryptophone-guide-en.md#tag-legend), [cryptophone (DE)](cryptophone-guide-de.md#tag-legend).
 
@@ -63,16 +63,16 @@ Each guide has a Tag legend section with the definitions and links to the open `
 
 ## Verification status
 
-The guides reference GrapheneOS primary documentation (install, usage, features, FAQ, releases, app repository), pinned GrapheneOS project source and external project documentation/source, with third-party guides identified separately as secondary. Local editorial review R01–R17 has been applied; overall acceptance remains a separate gate. Source reading and static document checks do not test distributed apps, devices, networking or practical security.
+The guides reference GrapheneOS primary documentation (install, usage, features, FAQ, releases, app repository), pinned GrapheneOS project source and external project documentation/source, with third-party guides identified separately as secondary. Source reading and static document checks do not test distributed apps, devices, networking or practical security.
 
-Open verification **categories, not individual claims: 3 in Daily, 6 in Crypto**, per language. Count occurrences as exactly linked `Verify`/`Prüfen` labels, bold or plain, excluding verbs and inline-code mentions; topics are unique `verify-*` base anchors, excluding `tag-verify`. Current per-language occurrences: **Daily 10 (6 direct-topic + 4 meta), Crypto 29 (26 direct-topic + 3 meta)**. Meta links lead to `#tag-verify`; direct links lead to the applicable category reason. Ten body/end-matter meta references already had the correct legend destination; this is not ten newly resolved claims.
+Open verification categories per language: **3 in the daily-driver guide, 6 in the cryptophone guide**. Linked verification labels: **Daily 8 (6 links to topics + 2 to the legend), Crypto 29 (26 links to topics + 3 to the legend)**. These counts exclude unlinked labels and count categories separately from individual claims.
 
 Still unconfirmed and marked `[Verify]` / `[Prüfen]` in the text:
 
-- The GrapheneOS project's stance on Tor VPN (its stance on Orbot appears only in a 2020 issue-tracker comment)
+- The GrapheneOS project's stance on Tor VPN (the Orbot assessment cited in the guides is a [dated maintainer comment from 1 May 2020](https://github.com/GrapheneOS/os-issue-tracker/issues/210#issuecomment-622457418))
 - Release-dependent menu paths and untested build behavior: NFC auto-off restoration, captive-portal login with VPN blocking, Sentry compatibility, Tor Android window behavior and the Accrescent licensing documentation/source discrepancy (grouped under `verify-menu-paths`; not positively confirmed or practically tested)
 - Carrier and SIM details: virtual-number reassignment and country-specific carrier/KYC rules under SIM rules; eSIM/data-eSIM account, ID and payment requirements under eSIM; SIM-less equipment-identifier exposure in emergency calls remains network-dependent
-- Country-specific legal, border and compelled-unlock rules. Check the rules of every country you enter or transit; obtain qualified local advice where needed. / Prüfe die Regeln jedes Landes, das du betrittst oder durchreist; hole bei Bedarf qualifizierten lokalen Rat ein. No legal advice is provided here.
+- Country-specific legal, border and compelled-unlock rules. Check the rules of every country you enter or transit; obtain qualified local advice where needed. No legal advice is provided here.
 
 ## Sources
 
