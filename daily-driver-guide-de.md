@@ -1,8 +1,8 @@
 # GrapheneOS-Leitfaden (Deutsch)
 
-> **Stand:** erstellt am 05.11.2026 und gegen die offiziellen GrapheneOS-Seiten geprüft (Features, Usage, FAQ, Web-/CLI-Installer, Releases). Menünamen und Geräteliste ändern sich zwischen Versionen. Wo etwas vom Gerät oder der Version abhängen kann, steht das im Text. Bei allem mit [**Prüfen**](#tag-verify) gilt: *Die passende aktuelle Primärdokumentation oder den Projektquelltext prüfen; dieser Link ist ein Metaverweis auf die Notation.*
+> **Stand:** erstellt am 05.11.2026 und gegen die offiziellen GrapheneOS-Seiten geprüft (Features, Usage, FAQ, Web-/CLI-Installer, Releases). Menünamen und Geräteliste ändern sich zwischen Versionen. Wo etwas vom Gerät oder der Version abhängen kann, steht das im Text. Bei allem mit [**Prüfen**](#tag-verify) gilt: *Die passende aktuelle Primärdokumentation oder den Projektquelltext prüfen.*
 >
-> **Legende:** [**Offiziell**](#tag-official) = GrapheneOS-Dokumentation oder GrapheneOS-Projektquelltext. [**Extern**](#tag-external) = eine genannte Nicht-GrapheneOS-Quelle, je nach Angabe primär oder sekundär. [**Empfehlung**](#tag-advice) = Empfehlung dieses Guides, keine offizielle GrapheneOS-Aussage.
+> **Legende:** [**Offiziell**](#tag-official) = GrapheneOS-Dokumentation, Projektquelltext oder klar zugeordnete Projektaussagen. [**Extern**](#tag-external) = eine genannte Nicht-GrapheneOS-Quelle, je nach Angabe primär oder sekundär. [**Empfehlung**](#tag-advice) = Empfehlung dieses Guides, keine offizielle GrapheneOS-Aussage.
 
 English version: [daily-driver-guide-en.md](daily-driver-guide-en.md) · Für ein strengeres Einzweck-Setup siehe [cryptophone-guide-de.md](cryptophone-guide-de.md)
 
@@ -29,14 +29,14 @@ English version: [daily-driver-guide-en.md](daily-driver-guide-en.md) · Für ei
 <a id="tag-legend"></a>
 ## Tag-Legende
 
-Tags unterscheiden Herkunft (GrapheneOS oder extern) und Evidenzart (Primärdokumentation, Projektquelltext, Sekundärquelle oder unbestätigt). Jeder Tag verlinkt seinen Legendeneintrag.
+Tags unterscheiden Herkunft (GrapheneOS oder extern) und Evidenzart (Primärdokumentation, Projektquelltext, datierte Projektaussage, Sekundärquelle oder unbestätigt). Quellen- und Empfehlungsmarkierungen verlinken die Legende; bei unbestätigten Aussagen verlinken Prüfmarkierungen das jeweilige offene Thema.
 
 | Markierung | Bedeutung |
 |---|---|
-| <a id="tag-official"></a>**[Offiziell]** | GrapheneOS-Herkunft: primäre GrapheneOS-Dokumentation oder GrapheneOS-Projektquelltext. Dokumentation und Code unterscheiden und Quelltextrevisionen möglichst festhalten; Quelltextlektüre ist kein Test eines ausgelieferten APKs. |
+| <a id="tag-official"></a>**[Offiziell]** | GrapheneOS-Herkunft: Primärdokumentation, Projektquelltext oder klar zugeordnete Aussagen von Projektkonten oder Maintainern. Quellenart nennen, Aussagen datieren und Quelltextrevisionen möglichst festhalten. Ein Quellentag ist kein Praxistest und keine Garantie für aktuelles Verhalten. |
 | <a id="tag-advice"></a>**[Empfehlung]** | Empfehlung dieses Leitfadens bzw. allgemeine Sicherheitspraxis; keine harte Tatsache und keine offizielle Aussage von GrapheneOS. |
 | <a id="tag-external"></a>**[Extern]** | Nicht-GrapheneOS-Herkunft, keine Evidenzrangfolge: eigene Projektdokumentation/eigener Code ist primär für die eigenen Aussagen; ein Drittanbieter-Leitfaden ist sekundär. Quelle und Evidenzart nennen; Extern kann daher zugleich primär sein. |
-| <a id="tag-verify"></a>**[Prüfen]** | Eine unbestätigte Aussage verlinkt direkt ihren verify-*-Grund; Metaverweise auf die Notation führen hierher (#tag-verify), nicht zu einer Aussage. Als Vorkommen zählen verlinkte Verify-/Prüfen-Labels, fett oder normal, nicht Verben oder Inline-Code. Themen sind eindeutige verify-*-Grundanker ohne tag-verify: Kategorien, keine einzelnen Aussagen. |
+| <a id="tag-verify"></a>**[Prüfen]** | Unbestätigte Aussage; folge dem Link für Details und Einschränkungen. |
 
 **Offene Prüfthemen** (Kategorien, keine einzelnen Aussagen; Links führen zu den Gründen):
 - [Versionsabhängige Pfade und ungeprüftes Build-Verhalten](#verify-menu-paths)
@@ -218,7 +218,7 @@ Menünamen und Build-Verhalten ändern sich zwischen Versionen. <a id="verify-me
 
 - Aktualisiere das System zuerst in einem vertrauenswürdigen Netz. Bei höherem Risiko kann es sinnvoll sein, vor dem Verbinden einen starken Sperrcode zu setzen.
 - Eine SIM oder eSIM verknüpft das Telefon mit einem Vertragskonto und einer Standortspur. Siehe [Abschnitt 9](#9-anonymität-realistische-opsec).
-- Eine eSIM ist nicht anonymer als eine physische SIM; sie hat eine eigene Kennung (EID, laut Android-Dokumentation). [**Empfehlung**](#tag-advice) Ein Duress-Wipe entfernt installierte eSIM-Profile [**Offiziell**](#tag-official); das kündigt den Vertrag beim Netzbetreiber nicht. [**Empfehlung**](#tag-advice)
+- Eine eSIM ist nicht anonymer als eine physische SIM. [**Empfehlung**](#tag-advice) Die EID identifiziert die eUICC-Hardware des Geräts, nicht ein einzelnes heruntergeladenes eSIM-Profil. [**Extern**](#tag-external) (<https://source.android.com/docs/core/connect/esim-euicc-api>) Ein Duress-Wipe entfernt installierte eSIM-Profile [**Offiziell**](#tag-official); das kündigt den Vertrag beim Netzbetreiber nicht. [**Empfehlung**](#tag-advice)
 - Der LTE-only-Modus (Einstellungen → Netzwerk & Internet → SIMs → deine SIM → Bevorzugter Netzwerktyp) verringert die Ausnutzung von altem Funkmodul-Code aus der Ferne; laut Projekt ist er keine Vertraulichkeitsfunktion. [**Offiziell**](#tag-official) Er hilft nur, wenn dein Netzbetreiber im LTE-only-Modus zuverlässig funktioniert. [**Empfehlung**](#tag-advice)
 - Wenn du kein Mobilfunknetz brauchst, kannst du das Telefon nur per WLAN nutzen (keine SIM eingelegt oder genutzt). Das vermeidet die SIM-basierte Verbindung zu einem Netzbetreiber, nicht aber WLAN-/IP-Exposition. Der Flugmodus ist kein Beweis für Ortungssicherheit, und Ausschalten ist stärker (siehe [cryptophone-guide-de.md, Abschnitt 9.1](cryptophone-guide-de.md#91-mobilfunknetz)). [**Empfehlung**](#tag-advice)
 
@@ -232,6 +232,8 @@ Pfad: **Einstellungen → Sicherheit & Datenschutz → Gerät entsperren** (engl
 - Nutze **Lockdown**, um die biometrische Entsperrung schnell abzuschalten: Drücke Ein-/Aus-Taste + Lauter und tippe dann auf Lockdown. Android kann Lockdown auch im Ein-/Aus-Menü anzeigen, nachdem du Einstellungen → Display → Erweitert → Sperrbildschirm-Anzeige → Lockdown-Option anzeigen aktiviert hast. Bis zum nächsten Entsperren deaktiviert es Benachrichtigungen auf dem Sperrbildschirm, die Entsperrung per Fingerabdruck/Gesicht und Extend Unlock (Google Android-Hilfe: <https://support.google.com/android/answer/9075927?hl=en>). Lockdown ist nicht dasselbe wie Ausschalten oder die Rückkehr des Geräts in den BFU-Zustand; dafür ausschalten oder neu starten. [**Empfehlung**](#tag-advice)
 
 ### 4.4 Auto-Reboot, USB-C und weitere Sicherheitseinstellungen
+
+BFU (Before First Unlock) bezeichnet den Zustand vor dem ersten Entsperren nach einem Neustart; AFU (After First Unlock) den Zustand danach.
 
 - **Auto-Reboot:** Jedes Sperren startet einen Countdown; erfolgreiches Entsperren eines beliebigen Profils hebt ihn auf. Bei Ablauf startet das gesperrte Gerät neu und versetzt Daten in den Ruhezustand (BFU). In BFU greift die Funktion nicht und führt dort nicht zu wiederholten Neustarts. Standard sind **18 Stunden**; einstellbar von 10 Minuten bis 72 Stunden oder aus [**Offiziell**](#tag-official) (<https://grapheneos.org/features#auto-reboot>). Ein kürzerer Zeitraum verkürzt das gesperrte AFU-Fenster, stört aber häufiger [**Empfehlung**](#tag-advice).
 - **USB-C-Port** (**Einstellungen → Sicherheit → Exploit-Schutz**; die offizielle Usage-Seite schreibt für das übergeordnete Menü auch „Security & privacy“, die Bezeichnung kann also abweichen [**Offiziell**](#tag-official)) hat fünf Modi: Aus, Nur Laden, **Nur Laden, wenn gesperrt** (Standard), Nur Laden, wenn gesperrt, außer vor dem ersten Entsperren, An. [**Offiziell**](#tag-official) Wenn nie USB-Daten nötig sind, wähle je nach benötigter Nutzbarkeit Nur Laden oder Aus [**Empfehlung**](#tag-advice). Aus deaktiviert bei gestartetem Betriebssystem neben Daten auch das Laden. Die Funktion gilt nicht im ausgeschalteten Zustand, im Firmware-Fastboot oder in den Modi Charging, Recovery und Fastbootd [**Offiziell**](#tag-official) (<https://grapheneos.org/features#usb-c-port-and-pogo-pins-control>).
@@ -341,7 +343,7 @@ Nutze sie, wann immer eine App Speicher- oder Kontaktzugriff anfordert.
 ### 7.1 Quellen in Reihenfolge der Präferenz [**Empfehlung**](#tag-advice), sofern nicht anders markiert
 
 1. **GrapheneOS App Store**: installiert von GrapheneOS gebaute Apps und Sandboxed Google Play, verteilt weitere Apps aus seinem Repository (darunter Accrescent und den PDF-Betrachter) und aktualisiert sie automatisch. [**Offiziell**](#tag-official)
-2. **Offizielle Entwickler-Releases** (z. B. GitHub-Releases) mit **Signatur-/Hash-Prüfung**; Updates musst du dann selbst verfolgen.
+2. **Offizielle Entwickler-Releases** (z. B. GitHub-Releases) mit **Signatur-/Hash-Prüfung**. Nutze einen vorhandenen App-eigenen Updater; andernfalls musst du Updates selbst verfolgen.
 3. **Accrescent**: ein separater App Store mit Fokus auf Sicherheit und Datenschutz. Die eigene Primärquelle bezeichnet ihn als Alpha [**Extern**](#tag-external) (<https://accrescent.app/>); GrapheneOS-Repository-Metadaten führen getrennt davon einen Accrescent-Mirror auf [**Offiziell**](#tag-official) (Projektquelltext: <https://github.com/GrapheneOS/apps.grapheneos.org/blob/c8e2b3fb21c420db7d4bab32ce3dd7e42afe7ea9/apps/packages/app.accrescent.client/common-props.toml>). Er ist hier wegen der Alpha-Phase unterhalb verifizierter Entwickler-Releases eingeordnet [**Empfehlung**](#tag-advice).
 4. **F-Droid**: ausschließlich Open-Source-Apps. Apps mit reproduzierbaren Builds werden mit der Signatur des Entwicklers veröffentlicht, nachdem F-Droid den Build geprüft hat, andere Apps werden mit F-Droids eigenen Schlüsseln signiert, und F-Droid baut nach eigenem Zeitplan, daher können Updates verzögert kommen (siehe 7.5). Bevorzuge, wenn vorhanden, den Kanal des Entwicklers. Nutze F-Droid für Apps, die es anderswo nicht gibt, und installiere nur, was du brauchst.
 5. **Aurora Store**: ein alternatives Play-Frontend. Es braucht weiterhin ein Google-Konto, holt aber standardmäßig geteilte Zugangsdaten vom Aurora-Dienst. [**Offiziell**](#tag-official) (Usage-Leitfaden) Play-Apps sind meist Closed Source [**Empfehlung**](#tag-advice) (allgemeine Schlussfolgerung), daher nur als letzter Ausweg. [**Empfehlung**](#tag-advice) Updates von Google Play-Diensten/Google Play Store werden nur vom GrapheneOS App Store oder dem Google Play Store selbst akzeptiert. [**Offiziell**](#tag-official) (Release-Notes)
@@ -366,7 +368,7 @@ Weniger Apps, weniger Berechtigungen, weniger Konten. Meide aufgeblähte, geschl
 
 | Kategorie | Vorschlag | Alternative | Hinweise |
 |---|---|---|---|
-| Browser | **Vanadium** (eingebaut) | Tor Browser für bestimmte Zwecke | Schwächere Sicherheit als Vanadium; siehe Abschnitt 9. Nicht viele Browser installieren |
+| Browser | **Vanadium** (eingebaut) | Tor Browser für bestimmte Zwecke | Der Tor Browser bietet schwächeren Schutz vor Exploits als Vanadium; siehe Abschnitt 9. Nicht viele Browser installieren |
 | Messenger | **Signal** | Andere geprüfte E2EE-Messenger | Ende-zu-Ende-verschlüsselt. Die Signal-Registrierung erfordert eine Rufnummer. Benutzernamen können deine Rufnummer vor anderen Nutzern verbergen, heben aber weder die Rufnummernpflicht auf noch beseitigen sie alle Metadaten-Exposition. Signal ist nicht im GrapheneOS-App-Repository [**Offiziell**](#tag-official). Signal ist im am 6. November 2026 geprüften Repository-Katalog von Accrescent nicht gelistet (Zeitstempel des Katalogs: 25. Februar 2026; die Verfügbarkeit kann sich ändern; <https://repo.accrescent.app/repodata.1.json>). Nutze stattdessen die Website-APK von Signal, Google Play oder eine andere ausdrücklich geprüfte Quelle (siehe 7.5). Prüfe das Repository erneut, wenn sich die Verfügbarkeit ändert. |
 | 2FA/Authenticator | **Aegis** (Open Source) | Hardware-Sicherheitsschlüssel (FIDO2) | Tresor verschlüsselt sichern; Wiederherstellungscodes offline |
 | Passwortmanager | **KeePassDX** oder Bitwarden | KeePassXC am Computer | Lokale Datenbank vermeidet ein Cloud-Konto |
@@ -449,7 +451,7 @@ Wie du ein Werkzeug beschaffst und einrichtest, zählt so viel wie die Wahl: Ein
 
 | Faktor | Was er offenbart / verknüpft |
 |---|---|
-| **SIM/eSIM, IMSI, Rufnummer** | Identifizieren dich gegenüber dem Netzbetreiber. Betreiber protokollieren genutzte Funkzellen (Standort). Eine eSIM hat eine eigene Kennung (EID); die Anforderungen bei der Aktivierung hängen vom Netzbetreiber und vom Land ab <a id="verify-esim"></a>[**Prüfen**](#verify-esim) (keine allgemeingültige Primärquelle für Anforderungen an Konto, Ausweis oder Zahlung gefunden). Registrierungspflichten sind länderabhängig |
+| **SIM/eSIM, IMSI, Rufnummer** | Identifizieren dich gegenüber dem Netzbetreiber. Betreiber protokollieren genutzte Funkzellen (Standort). Die EID identifiziert die eUICC-Hardware des Geräts, nicht ein einzelnes heruntergeladenes eSIM-Profil. [**Extern**](#tag-external) (<https://source.android.com/docs/core/connect/esim-euicc-api>) Die Anforderungen bei der Aktivierung hängen vom Netzbetreiber und vom Land ab <a id="verify-esim"></a>[**Prüfen**](#verify-esim) (keine allgemeingültige Primärquelle für Anforderungen an Konto, Ausweis oder Zahlung gefunden). Registrierungspflichten sind länderabhängig |
 | **IMEI** | Hardwarekennung des Geräts, die das Netz sieht; SIM-Wechsel ändert sie nicht. Betreiber können IMSI/IMEI-Paare protokollieren, sodass eine neue SIM im selben Telefon oder eine alte SIM in einem neuen Telefon Identitäten verknüpfen kann; EFF: Das Netz beobachtet SIM und Gerät gemeinsam |
 | **Mobilfunk-Metadaten** | Anruf-/SMS-/Datenverbindungen, Funkzellen, Zeitpunkte. Ein VPN verbirgt nicht, dass dein Telefon sich ins Netz einbucht. Anrufe, SMS und VoLTE sind Netzbetreiberdienste und werden von einem VPN nicht abgedeckt |
 | **IP-Adresse** | Von jedem kontaktierten Server gesehen; nur durch VPN/Tor verborgen (Vertrauen verschiebt sich) |
@@ -467,7 +469,7 @@ Wie du ein Werkzeug beschaffst und einrichtest, zählt so viel wie die Wahl: Ein
 | **Tor** | Verbirgt deine IP vor Seiten durch Mehrfach-Routing | Verbirgt nicht, was du durch Logins oder Inhalte preisgibst; macht Verkehr auffällig; langsam; Exit-Knoten sehen unverschlüsselten Verkehr |
 
 - **Wann ein VPN hilft:** in nicht vertrauenswürdigen Netzen, zum Verbergen vor lokalem Provider oder einer Seite, oder um aus einer stabilen IP-Region aufzutreten. **Wann nicht:** du meldest dich in Konten an, die auf dich laufen, oder die Bedrohung ist der Netzbetreiber oder der VPN-Anbieter selbst.
-- **Tor auf dem Handy:** Laut Projekt ist die Sicherheit des Tor Browsers im Vergleich zu Vanadium schwach, und Tor kann einen selbst zu einem interessanteren Ziel machen. [**Offiziell**](#tag-official) Wer starke Tor-Anonymität braucht, ist mit einer eigenen Umgebung, also einem separaten Gerät oder einem separaten Betriebssystem und nicht bloß einer separaten App, besser bedient als mit einem Alltagstelefon. App-Routing über Orbot oder Tor VPN ersetzt die Nutzungsregeln des Tor Browsers nicht, und das Tor Project sagt, die Tor-VPN-Beta solle nicht für sensible Aktivitäten genutzt werden. Ein GrapheneOS-Maintainer schrieb 2020 im Issue-Tracker des Projekts, Orbot sei schlecht umgesetzt und gepflegt und das Projekt werde es weder forken noch bündeln. [**Offiziell**](#tag-official) FAQ und Usage-Seiten nennen keine Tor-App.
+- **Tor auf dem Handy:** Laut Projekt ist die Sicherheit des Tor Browsers im Vergleich zu Vanadium schwach, und Tor kann einen selbst zu einem interessanteren Ziel machen. [**Offiziell**](#tag-official) Wer starke Tor-Anonymität braucht, ist mit einer eigenen Umgebung, also einem separaten Gerät oder einem separaten Betriebssystem und nicht bloß einer separaten App, besser bedient als mit einem Alltagstelefon. App-Routing über Orbot oder Tor VPN ersetzt die Nutzungsregeln des Tor Browsers nicht, und das Tor Project sagt, die Tor-VPN-Beta solle nicht für sensible Aktivitäten genutzt werden. In einem [datierten Issue-Kommentar vom 1. Mai 2020](https://github.com/GrapheneOS/os-issue-tracker/issues/210#issuecomment-622457418) bezeichnete GrapheneOS-Maintainer thestinger Orbot als schlecht umgesetzt und gepflegt und lehnte es ab, Orbot zu forken oder zu bündeln. [**Offiziell**](#tag-official) Dieser datierte Kommentar belegt keine aktuelle Bewertung von Orbot oder Tor VPN durch das Projekt.
 - Android erlaubt ein VPN pro Profil; stapele VPN-Apps nicht blind.
 - Nutze ein WLAN, dem dein privates Telefon nie beitritt, und benutze beide Geräte nicht zu denselben Zeiten und an denselben Orten. [**Empfehlung**](#tag-advice)
 
@@ -569,7 +571,7 @@ Das verringert unnötige Datenspuren und begrenzt Verknüpfungen. Es erzeugt kei
 
 | App-Typ | Empfohlene Option | Alternative | Hinweise |
 |---|---|---|---|
-| Browser | Vanadium | Tor Browser (Sonderfälle) | Schwächere Sicherheit als Vanadium; siehe Abschnitt 9. Nicht viele hinzufügen |
+| Browser | Vanadium | Tor Browser (Sonderfälle) | Der Tor Browser bietet schwächeren Schutz vor Exploits als Vanadium; siehe Abschnitt 9. Nicht viele hinzufügen |
 | Messenger | Signal | Andere geprüfte E2EE | Registrierung erfordert eine Rufnummer; Benutzernamen verbergen sie nur vor anderen Nutzern |
 | 2FA | Aegis | FIDO2-Schlüssel | Wiederherstellung offline |
 | Passwortmanager | KeePassDX | Bitwarden | Lokale DB oder vertrauenswürdige Synchronisierung |
@@ -617,4 +619,4 @@ Das verringert unnötige Datenspuren und begrenzt Verknüpfungen. Es erzeugt kei
 - Signal-Nutzungsbedingungen: <https://signal.org/legal/>
 - Android-Entwicklerdokumentation (eSIM/EID): <https://source.android.com/docs/core/connect/esim-euicc-api>
 
-Meta: Aussagen mit [**Empfehlung**](#tag-advice) sind die Einschätzung dieses Leitfadens, keine offiziellen Positionen. Bei [**Prüfen**](#tag-verify): *Die passende Primärdokumentation oder den Projektquelltext prüfen. Dieser Link bezeichnet die Notation, keine offene Aussage.*
+[**Empfehlung**](#tag-advice)-Markierungen kennzeichnen Empfehlungen dieses Leitfadens. [**Prüfen**](#tag-verify)-Markierungen kennzeichnen noch ungeklärte Punkte.
