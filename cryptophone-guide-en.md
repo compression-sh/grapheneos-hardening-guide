@@ -435,7 +435,7 @@ Do not log into personal accounts on this device, do not open personal links, an
 <a id="behavioral-opsec--verhaltens-opsec"></a>
 ## Behavioral OPSEC
 
-Meta: The settings in section 4 protect the device. This section covers what you do with it, because identities are usually linked by habits, not by technical flaws. Every recommendation below has a stated limitation, and none of them makes you anonymous. Sources are GrapheneOS primary documentation and project source [**Official**](#tag-official), named external primary sources such as EFF Surveillance Self-Defense, Freedom of the Press Foundation and Tor Project [**External**](#tag-external) (see the Useful websites section), and this guide's judgment [**Advice**](#tag-advice). Anything not confirmed is [**Verify**](#tag-verify).
+The settings in section 4 protect the device. This section covers what you do with it, because identities are usually linked by habits, not by technical flaws. Every recommendation below has a stated limitation, and none of them makes you anonymous. Sources are GrapheneOS primary documentation and project source [**Official**](#tag-official), named external primary sources such as EFF Surveillance Self-Defense, Freedom of the Press Foundation and Tor Project [**External**](#tag-external) (see the Useful websites section), and this guide's judgment [**Advice**](#tag-advice). Anything not confirmed is [**Verify**](#tag-verify).
 
 ### SIM / eSIM discipline
 
@@ -461,7 +461,7 @@ Choosing a tool is not enough; how you obtain and activate it decides whether it
 
 ### When to turn the phone off
 
-**BFU and AFU.** Before First Unlock (BFU) is the state after boot until you unlock for the first time: data is at rest and the profile keys are not in memory. After First Unlock (AFU) the keys are in memory and more is exposed. GrapheneOS auto-reboot starts its countdown at each lock; a successful unlock of any profile cancels it. If it expires, the locked device reboots to put data at rest. The feature does not apply in BFU, so it does not cause repeated reboots there [**Official**](#tag-official) (<https://grapheneos.org/features#auto-reboot>)
+**BFU and AFU.** Before First Unlock (BFU) is the state after boot until you unlock for the first time: data is at rest and the profile keys are not in memory. After First Unlock (AFU) the keys are in memory and more is exposed. GrapheneOS auto-reboot starts its countdown at each lock; a successful unlock of any profile cancels it. If it expires, the locked device reboots to put data at rest. The feature does not apply in BFU, so it does not cause repeated reboots there [**Official**](#tag-official) (<https://grapheneos.org/features#auto-reboot>).
 
 | When | Do | Why | Limitation |
 |---|---|---|---|
@@ -731,6 +731,6 @@ Everything listed in section 1, plus a compromised endpoint on the other side, t
 |---|---|
 | GrapheneOS install, lock/unlock, wipes, secure-element limits, auto-reboot, USB-C modes, scopes, permissions, Private DNS and VPN guidance, LTE-only, eSIM, Vanadium behavior, Accrescent and the PDF Viewer in the app repository, Private Space clipboard setting, absence of a remote wipe | Checked against GrapheneOS primary documentation and, where linked, pinned GrapheneOS project source (distinct evidence kinds; no distributed-APK test) [**Official**](#tag-official) |
 | EFF (including the 2025 border checklist), Tor Project, FPF (including powered-off signals), RSF (Digital Security and Spyware Guide), Signal blog and support articles (including backups, safety numbers, Signal PIN, Registration Lock and the APK page), HIBP, app licenses and sources | External provenance: own project documentation/code is primary for its own claims (including Signal, Android and Accrescent); documentation and project source are distinct. Other named primary sources were spot-checked; the NFC path is separately secondary (privacygear.nl) [**External**](#tag-external) |
-| Meta: Category index: [GrapheneOS stance on Tor VPN](#verify-tor-vpn); [release-dependent paths and untested build behavior](#verify-menu-paths); [eSIM/data-eSIM account, ID or payment requirements](#verify-esim); [SIM-less IMEI visibility](#verify-imei); [SIM rules and virtual-number reassignment](#verify-sim-rules); [legal and border rules](#verify-legal) | Notation only, not a claim count: [**Verify**](#tag-verify) |
+| Open verification topics: [GrapheneOS stance on Tor VPN](#verify-tor-vpn); [release-dependent paths and untested build behavior](#verify-menu-paths); [eSIM/data-eSIM account, ID or payment requirements](#verify-esim); [SIM-less IMEI visibility](#verify-imei); [SIM rules and virtual-number reassignment](#verify-sim-rules); [legal and border rules](#verify-legal) | Notation only, not a claim count: [**Verify**](#tag-verify) |
 
 *For an open claim, consult the relevant primary documentation or project source and the stated limitations. Source reading is not a practical test.*

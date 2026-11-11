@@ -6,7 +6,7 @@
 >
 > **Stand:** erstellt am 05.11.2026. GrapheneOS-Aussagen verweisen auf primäre GrapheneOS-Dokumentation oder verlinkten GrapheneOS-Projektquelltext. Genannte externe Quellen unterscheiden eigene Primärdokumentation/eigenen Code von sekundären Leitfäden. Offene Unsicherheiten stehen im Text; Menünamen ändern sich zwischen Versionen.
 >
-> **Tags:** [**Offiziell**](#tag-official) = GrapheneOS-Dokumentation, Projektquelltext oder klar zugeordnete Projektaussagen. [**Extern**](#tag-external) = eine genannte Nicht-GrapheneOS-Quelle (je nach Angabe primär oder sekundär). [**Empfehlung**](#tag-advice) = Einschätzung dieses Guides. [**Prüfen**](#tag-verify) = unbestätigte Aussage; folge dem Link für Details und Einschränkungen.
+> **Tags:** [**Offiziell**](#tag-official) = GrapheneOS-Dokumentation, Projektquelltext oder klar zugeordnete Projektaussagen. [**Extern**](#tag-external) = eine genannte Nicht-GrapheneOS-Quelle (je nach Angabe primär oder sekundär). [**Empfehlung**](#tag-advice) = Einschätzung dieses Leitfadens. [**Prüfen**](#tag-verify) = unbestätigte Aussage; folge dem Link für Details und Einschränkungen.
 >
 > **Keine Rechtsberatung.** Alle Aussagen zu Durchsuchung, erzwungener Entsperrung oder Datenvernichtung sind allgemein gehalten und hängen von der Rechtsordnung ab. Hole lokalen Rechtsrat ein.
 
@@ -434,7 +434,7 @@ Melde dich auf diesem Gerät nicht in privaten Konten an, öffne keine privaten 
 
 ## Behavioral OPSEC / Verhaltens-OPSEC
 
-Meta: Die Einstellungen in Abschnitt 4 schützen das Gerät. Dieser Abschnitt behandelt, was du damit tust, denn Identitäten werden meist durch Gewohnheiten verknüpft, nicht durch technische Schwächen. Jede Empfehlung unten nennt ihre Grenze, und keine macht dich anonym. Quellen sind primäre GrapheneOS-Dokumentation und GrapheneOS-Projektquelltext [**Offiziell**](#tag-official), genannte externe Primärquellen wie EFF Surveillance Self-Defense, Freedom of the Press Foundation und Tor Project [**Extern**](#tag-external) (siehe Abschnitt „Nützliche Webseiten“) sowie die Einschätzung dieses Leitfadens [**Empfehlung**](#tag-advice). Alles Unbestätigte ist [**Prüfen**](#tag-verify).
+Die Einstellungen in Abschnitt 4 schützen das Gerät. Dieser Abschnitt behandelt, was du damit tust, denn Identitäten werden meist durch Gewohnheiten verknüpft, nicht durch technische Schwächen. Jede Empfehlung unten nennt ihre Grenze, und keine macht dich anonym. Quellen sind primäre GrapheneOS-Dokumentation und GrapheneOS-Projektquelltext [**Offiziell**](#tag-official), genannte externe Primärquellen wie EFF Surveillance Self-Defense, Freedom of the Press Foundation und Tor Project [**Extern**](#tag-external) (siehe Abschnitt „Nützliche Webseiten“) sowie die Einschätzung dieses Leitfadens [**Empfehlung**](#tag-advice). Alles Unbestätigte ist [**Prüfen**](#tag-verify).
 
 ### SIM-/eSIM-Disziplin
 
@@ -460,7 +460,7 @@ Ein Werkzeug auszuwählen genügt nicht; wie du es beschaffst und aktivierst, en
 
 ### Wann du das Telefon ausschalten solltest
 
-**BFU und AFU.** Before First Unlock (BFU) ist der Zustand nach dem Start bis zum ersten Entsperren: Die Daten ruhen, und die Profilschlüssel liegen nicht im Speicher. Nach dem ersten Entsperren (After First Unlock, AFU) liegen die Schlüssel im Speicher, und es liegt mehr Angriffsfläche offen. Das Auto-Reboot von GrapheneOS startet den Countdown bei jedem Sperren; erfolgreiches Entsperren eines beliebigen Profils hebt ihn auf. Läuft er ab, startet das gesperrte Gerät neu und versetzt Daten in den Ruhezustand. In BFU greift die Funktion nicht und verursacht dort keine wiederholten Neustarts [**Offiziell**](#tag-official) (<https://grapheneos.org/features#auto-reboot>)
+**BFU und AFU.** Before First Unlock (BFU) ist der Zustand nach dem Start bis zum ersten Entsperren: Die Daten ruhen, und die Profilschlüssel liegen nicht im Speicher. Nach dem ersten Entsperren (After First Unlock, AFU) liegen die Schlüssel im Speicher, und es liegt mehr Angriffsfläche offen. Das Auto-Reboot von GrapheneOS startet den Countdown bei jedem Sperren; erfolgreiches Entsperren eines beliebigen Profils hebt ihn auf. Läuft er ab, startet das gesperrte Gerät neu und versetzt Daten in den Ruhezustand. In BFU greift die Funktion nicht und verursacht dort keine wiederholten Neustarts [**Offiziell**](#tag-official) (<https://grapheneos.org/features#auto-reboot>).
 
 | Wann | Tun | Warum | Grenze |
 |---|---|---|---|
@@ -730,6 +730,6 @@ Alles in Abschnitt 1 Genannte sowie einen kompromittierten Endpunkt auf der Gege
 |---|---|
 | GrapheneOS-Installation, Entsperren/Sperren, Löschvorgänge, Grenzen des Secure Elements, Auto-Reboot, USB-C-Modi, Scopes, Berechtigungen, Private-DNS- und VPN-Hinweise, LTE-only, eSIM, Vanadium-Verhalten, Accrescent und PDF-Betrachter im App-Repository, Einstellung zur Zwischenablage im Private Space, Fehlen einer Fernlöschung | Gegen primäre GrapheneOS-Dokumentation und, wo verlinkt, gepinnten GrapheneOS-Projektquelltext geprüft (getrennte Evidenzarten; kein Test ausgelieferter APKs) [**Offiziell**](#tag-official) |
 | EFF (einschließlich der Grenz-Checkliste von 2025), Tor Project, FPF (einschließlich Signalen bei ausgeschaltetem Gerät), RSF (Digital Security and Spyware Guide), Signal-Blog und Support-Artikel (einschließlich Backups, Sicherheitsnummern, Signal-PIN, Registrierungssperre und APK-Seite), HIBP, App-Lizenzen und -Quellen | Externe Herkunft: eigene Projektdokumentation/eigener Code ist primär für eigene Aussagen (einschließlich Signal, Android und Accrescent); Dokumentation und Projektquelltext sind getrennt. Weitere genannte Primärquellen wurden stichprobenartig geprüft; der NFC-Pfad ist gesondert sekundär (privacygear.nl) [**Extern**](#tag-external) |
-| Meta: Kategorieindex: [GrapheneOS-Haltung zu Tor VPN](#verify-tor-vpn); [versionsabhängige Pfade und ungeprüftes Build-Verhalten](#verify-menu-paths); [eSIM-/Daten-eSIM-Konto-, Ausweis- oder Zahlungspflichten](#verify-esim); [IMEI-Sichtbarkeit ohne SIM](#verify-imei); [SIM-Regeln und Neuvergabe virtueller Nummern](#verify-sim-rules); [Rechts- und Grenzregeln](#verify-legal) | Nur Notation, keine Anzahl einzelner Aussagen: [**Prüfen**](#tag-verify) |
+| Offene Prüfthemen: [GrapheneOS-Haltung zu Tor VPN](#verify-tor-vpn); [versionsabhängige Pfade und ungeprüftes Build-Verhalten](#verify-menu-paths); [eSIM-/Daten-eSIM-Konto-, Ausweis- oder Zahlungspflichten](#verify-esim); [IMEI-Sichtbarkeit ohne SIM](#verify-imei); [SIM-Regeln und Neuvergabe virtueller Nummern](#verify-sim-rules); [Rechts- und Grenzregeln](#verify-legal) | Nur Notation, keine Anzahl einzelner Aussagen: [**Prüfen**](#tag-verify) |
 
 *Bei einer offenen Aussage die passende Primärdokumentation oder den Projektquelltext und die genannten Grenzen heranziehen. Quellenlektüre ist kein Praxistest.*

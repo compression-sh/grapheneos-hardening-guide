@@ -2,7 +2,7 @@
 
 > **Stand:** erstellt am 05.11.2026 und gegen die offiziellen GrapheneOS-Seiten geprüft (Features, Usage, FAQ, Web-/CLI-Installer, Releases). Menünamen und Geräteliste ändern sich zwischen Versionen. Wo etwas vom Gerät oder der Version abhängen kann, steht das im Text. Bei allem mit [**Prüfen**](#tag-verify) gilt: *Die passende aktuelle Primärdokumentation oder den Projektquelltext prüfen.*
 >
-> **Legende:** [**Offiziell**](#tag-official) = GrapheneOS-Dokumentation, Projektquelltext oder klar zugeordnete Projektaussagen. [**Extern**](#tag-external) = eine genannte Nicht-GrapheneOS-Quelle, je nach Angabe primär oder sekundär. [**Empfehlung**](#tag-advice) = Empfehlung dieses Guides, keine offizielle GrapheneOS-Aussage.
+> **Legende:** [**Offiziell**](#tag-official) = GrapheneOS-Dokumentation, Projektquelltext oder klar zugeordnete Projektaussagen. [**Extern**](#tag-external) = eine genannte Nicht-GrapheneOS-Quelle, je nach Angabe primär oder sekundär. [**Empfehlung**](#tag-advice) = Empfehlung dieses Leitfadens, keine offizielle GrapheneOS-Aussage.
 
 English version: [daily-driver-guide-en.md](daily-driver-guide-en.md) · Für ein strengeres Einzweck-Setup siehe [cryptophone-guide-de.md](cryptophone-guide-de.md)
 
