@@ -49,7 +49,7 @@ Cryptophone guide only: behavioral OPSEC, incident response, anti-patterns, and 
 | **[Advice]** | **[Empfehlung]** | This repository's judgment or general security practice |
 | **[Verify]** | **[Prüfen]** | Unconfirmed claim: direct topic link with a reason. Meta references to this notation instead point to the tag legend, not to an unresolved claim |
 
-Provenance and evidence are separate axes: `Official`/`External` identify whose source it is; primary documentation, project source, secondary source and unconfirmed describe evidence. Documentation published by Signal, Android and Accrescent is external to GrapheneOS and primary for those projects’ own claims. privacygear.nl is a secondary source for the NFC path. A source tag is not a practical test or security guarantee.
+Provenance and evidence are separate axes: `Official`/`External` identify whose source it is; primary documentation, project source, secondary source and unconfirmed describe evidence. Documentation published by Signal, Android and Accrescent is external to GrapheneOS and primary for those projects’ own claims. privacygear.nl remains a secondary hardening walkthrough; the NFC settings path is also attested in GrapheneOS release notes. A source tag is not a practical test or security guarantee.
 
 Each guide has a Tag legend section with the definitions and links to the open `[Verify]` topics: [daily-driver (EN)](daily-driver-guide-en.md#tag-legend), [daily-driver (DE)](daily-driver-guide-de.md#tag-legend), [cryptophone (EN)](cryptophone-guide-en.md#tag-legend), [cryptophone (DE)](cryptophone-guide-de.md#tag-legend).
 
@@ -65,14 +65,18 @@ Each guide has a Tag legend section with the definitions and links to the open `
 
 The guides reference GrapheneOS primary documentation (install, usage, features, FAQ, releases, app repository), pinned GrapheneOS project source and external project documentation/source, with third-party guides identified separately as secondary. Source reading and static document checks do not test distributed apps, devices, networking or practical security.
 
-Open verification categories per language: **3 in the daily-driver guide, 6 in the cryptophone guide**. Linked verification labels: **Daily 8 (6 links to topics + 2 to the legend), Crypto 29 (26 links to topics + 3 to the legend)**. These counts exclude unlinked labels and count categories separately from individual claims.
+Open verification categories per language: **3 in the daily-driver guide, 5 in the cryptophone guide**. Linked verification labels: **Daily 8 (6 links to topics + 2 to the legend), Crypto 28 (25 links to topics + 3 to the legend)**. These counts exclude unlinked labels and count categories separately from individual claims.
 
 Still unconfirmed and marked `[Verify]` / `[Prüfen]` in the text:
 
-- The GrapheneOS project's stance on Tor VPN (the Orbot assessment cited in the guides is a [dated maintainer comment from 1 May 2020](https://github.com/GrapheneOS/os-issue-tracker/issues/210#issuecomment-622457418))
-- Release-dependent menu paths and untested build behavior: NFC auto-off restoration, captive-portal login with VPN blocking, Sentry compatibility, Tor Android window behavior and the Accrescent licensing documentation/source discrepancy (grouped under `verify-menu-paths`; not positively confirmed or practically tested)
+- Release-dependent menu paths and untested build behavior: NFC auto-off restoration (removed in [2025070800](https://grapheneos.org/releases#2025070800); no restoration entry found through release notes checked on 11 November 2026 including 2026110800), captive-portal login with VPN blocking, Sentry compatibility, Tor Android window behavior and the Accrescent licensing documentation/source discrepancy for distributed builds (grouped under `verify-menu-paths`; not positively confirmed or practically tested). Cryptomator Accrescent: docs require a license key; tag `2.1.0` / `main` still bypasses Accrescent licensing in source, while `develop` commit `54642f10` (October 2026) aligns source with license enforcement — distributed Accrescent still untested
 - Carrier and SIM details: virtual-number reassignment and country-specific carrier/KYC rules under SIM rules; eSIM/data-eSIM account, ID and payment requirements under eSIM; SIM-less equipment-identifier exposure in emergency calls remains network-dependent
 - Country-specific legal, border and compelled-unlock rules. Check the rules of every country you enter or transit; obtain qualified local advice where needed. No legal advice is provided here.
+
+Confirmed since the previous verification pass (no longer open `[Verify]` topics):
+
+- GrapheneOS Orbot / Tor VPN preference: official GrapheneOS account post of [4 November 2024](https://discuss.grapheneos.org/d/17090-what-is-grapheneos-team-stance-on-orbot/5) recommends avoiding Orbot and preferring Tor's own VPN app once available; Tor Project warns the Tor VPN beta must not be relied on for sensitive use (<https://support.torproject.org/tor-vpn/>). The earlier [1 May 2020](https://github.com/GrapheneOS/os-issue-tracker/issues/210#issuecomment-622457418) maintainer comment remains historical corroboration only
+- NFC settings menu path (Settings → Connected devices → Connection preferences → NFC) is attested in GrapheneOS release notes (<https://grapheneos.org/releases#2026050400>), not only in secondary guides
 
 ## Sources
 
